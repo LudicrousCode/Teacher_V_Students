@@ -5,10 +5,15 @@ import org.newdawn.slick.*;
  */
 public class Main extends BasicGame{
 
-private Image background;
+    private Image background;
+    private int[][] lawn;
+    private int money;
 
     public Main(String title){
         super(title);
+
+        lawn = new int[10][6];
+        money = 0;
     }
 
     @Override
@@ -29,7 +34,7 @@ private Image background;
 
     public static void main(String[] args) throws SlickException{
         AppGameContainer app = new AppGameContainer(new Main("Test"));
-        app.setDisplayMode(400, 100, false);
+        app.setDisplayMode(1200, 800, false);
         app.start();
     }
 }
