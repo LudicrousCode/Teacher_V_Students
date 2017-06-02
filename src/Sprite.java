@@ -249,7 +249,7 @@ public class Sprite {
     private int x, y;
     private Image pic;
     public Sprite(){
-        pic = new Image("res/blank.png");
+//        pic = new Image("res/blank.png");
     }
 
 }

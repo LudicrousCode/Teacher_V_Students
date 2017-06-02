@@ -7,12 +7,12 @@ import org.newdawn.slick.state.StateBasedGame;
  * Created by andrew_briasco on 5/8/17.
  */
 public class Game extends StateBasedGame {
-    public static final int WINDOW_WIDTH = 1280;
-    public static final int WINDOW_HEIGHT = WINDOW_WIDTH/16*9;
+    public static final int WINDOW_WIDTH = 1200;
+    public static final int WINDOW_HEIGHT = 800;
     public static final boolean FULLSCREEN = false;
 
     public static final float SCALE = (float) (1.25*((double)WINDOW_WIDTH/1280));
-    public static final String GAME_NAME = "Platformer!";
+    public static final String GAME_NAME = "Teacher V Students";
 
     public Game(){
         super(GAME_NAME);
