@@ -19,6 +19,8 @@ public class Sprite {
         boundRect = new Rectangle(x*100, y*100, pic.getWidth(), pic.getHeight());
     }
 
+
+
     public Rectangle getBounds(){
         return boundRect;
     }
