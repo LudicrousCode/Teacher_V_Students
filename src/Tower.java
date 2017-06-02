@@ -35,4 +35,19 @@ public class Tower extends Sprite{
 
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public Rectangle getBoundRect() {
+        return boundRect;
+    }
 }

@@ -8,7 +8,7 @@ public class Quiz extends Tower {
 
 
     public Quiz(int x, int y)throws SlickException{
-        super(20, 0, new Image("res/Tower/quiz.png"), x, y, 100);
+        super(30, 0, new Image("res/Tower/quiz.png"), x, y, 100);
         //int price, int damage, Image pic, int x, int y
 
     }
