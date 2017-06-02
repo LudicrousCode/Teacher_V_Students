@@ -7,6 +7,7 @@ public class Main extends BasicGame{
 
     private Image background;
     private int[][] lawn;
+    private Plants[][] plants;
     private int money;
 
     public Main(String title){
@@ -29,6 +30,13 @@ public class Main extends BasicGame{
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
+        for (int i = 0; i < plants.length; i++) {
+            for (int j = 0; j < plants[i].length; j++) {
+                if (plants[i][j] != null){
+//                    plants[i][j].
+                }
+            }
+        }
 
     }
 
