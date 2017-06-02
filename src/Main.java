@@ -10,7 +10,9 @@ public class Main extends BasicGame{
     private Plants[][] plants;
     private int money;
 
-    public Main(String title){
+    Zombies a = new Zombies(500, 500, "blank.png", 5, 100);
+
+    public Main(String title) throws SlickException {
         super(title);
 
         lawn = new int[10][6];
