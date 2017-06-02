@@ -18,6 +18,7 @@ public class Main extends BasicGame{
         super(title);
 
         lawn = new int[10][6];
+        plants = new Tower[10][6];
         money = 0;
     }
 
