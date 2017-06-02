@@ -48,4 +48,6 @@ public class Sprite {
         this.y = y;
     }
 
+    public Image getPic(){ return pic; }
+
 }

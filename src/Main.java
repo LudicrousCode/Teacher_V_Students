@@ -2,6 +2,8 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
+import java.util.ArrayList;
+
 /**
  * Created by andrew_briasco on 5/8/17.
  */
@@ -10,16 +12,19 @@ public class Main extends BasicGame{
     private Image background;
     private int[][] lawn;
     private Tower[][] plants;
+    private ArrayList<Zombies> zombies;
+    private ArrayList<Projectile> projectiles;
     private int money;
-
-    Zombies a = new Zombies(500, 500, "blank.png", 5, 100);
 
     public Main(String title) throws SlickException {
         super(title);
 
         lawn = new int[10][6];
-        plants = new Tower[10][6];
         money = 0;
+
+        plants = new Tower[10][6];
+        zombies = new ArrayList<Zombies>();
+        projectiles = new ArrayList<Projectile>();
     }
 
     @Override
@@ -29,6 +34,21 @@ public class Main extends BasicGame{
 
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
+        /**
+         * plants attack
+         * hit detection
+         *     if collision, zombies attack
+         * zombies move
+         */
+
+        for (int j = 0; j < plants.length; j++) {
+            for (int k = 0; k < plants[0].length; k++){
+                plants[j][k].shoot();
+            }
+        }
+//        for(int l = 0; l < zombies.size(); l++){
+//            for(int m = 0; m < projectiles.size(); m++)
+//        }
 
     }
 
@@ -43,7 +63,7 @@ public class Main extends BasicGame{
         for (int i = 0; i < plants.length; i++) {
             for (int j = 0; j < plants[i].length; j++) {
                 if (plants[i][j] != null){
-//                    plants[i][j].
+//                    plants[i][j].draw
                 }
             }
         }
