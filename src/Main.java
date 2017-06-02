@@ -12,7 +12,8 @@ public class Main extends BasicGame{
     private Tower[][] plants;
     private int money;
 
-    Zombies a = new Zombies(500, 500, "blank.png", 5, 100);
+    Image pic = new Image("res/blank.png");
+    Zombies a = new Zombies(500, 500, pic, 5, 100);
 
     public Main(String title) throws SlickException {
         super(title);
@@ -23,7 +24,7 @@ public class Main extends BasicGame{
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
-
+        a.render();
     }
 
     @Override
@@ -46,6 +47,8 @@ public class Main extends BasicGame{
                 }
             }
         }
+
+
 
     }
 

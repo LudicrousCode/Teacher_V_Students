@@ -8,14 +8,14 @@ public class Zombies extends Sprite{
 
     private int speed, HP;
 
-    public Zombies(int x, int y, String pic, int speed, int HP) throws SlickException {
+    public Zombies(int x, int y, Image pic, int speed, int HP) throws SlickException {
         super(x, y, pic);
         this.speed = speed;
         this.HP = HP;
     }
 
-    public void draw(){
-
+    public void render(){
+        getPic().draw(getX(), getY());
     }
 
     public void move(){
