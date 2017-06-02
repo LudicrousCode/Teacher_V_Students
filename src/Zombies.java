@@ -9,7 +9,8 @@ public class Zombies extends Sprite{
     private int speed, HP;
 
     public Zombies(int x, int y, Image pic, int speed, int HP) throws SlickException {
-        super(x, y, pic);
+        super(x, y);
+        this.setPic(pic);
         this.speed = speed;
         this.HP = HP;
     }

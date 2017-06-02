@@ -9,5 +9,6 @@ public class Projectile extends Sprite {
 
     public Projectile(int x, int y, Image pic) throws SlickException{
         super(x, y);
+        this.setPic(pic);
     }
 }

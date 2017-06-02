@@ -12,8 +12,8 @@ public class Sprite {
     private Image pic;
     private Rectangle boundRect;
 
-    public Sprite(int x, int y, Image pic)throws SlickException{
-        this.pic = pic;
+    public Sprite(int x, int y)throws SlickException{
+        this.pic = new Image("res/blank.png");
         this.x = x;
         this.y = y;
         boundRect = new Rectangle(x*100, y*100, pic.getWidth(), pic.getHeight());

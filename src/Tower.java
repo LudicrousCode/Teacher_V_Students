@@ -17,10 +17,12 @@ public class Tower extends Sprite{
     private int price, damage, health;
     private Rectangle boundRect;
 
-    public Tower(int price, int damage, Image pic, int x, int y) throws SlickException {
-        super(x, y, pic);
+    public Tower(int price, int damage, Image pic, int x, int y, int health) throws SlickException {
+        super(x, y);
+        this.setPic(pic);
         this.price = price;
         this.damage = damage;
+        this.health = health;
         boundRect = new Rectangle(x*100, y*100, getPic().getWidth(), getPic().getHeight());
 
     }
