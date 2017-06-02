@@ -7,7 +7,7 @@ public class Main extends BasicGame{
 
     private Image background;
     private int[][] lawn;
-    private Plants[][] plants;
+    private Tower[][] plants;
     private int money;
 
     Zombies a = new Zombies(500, 500, "blank.png", 5, 100);

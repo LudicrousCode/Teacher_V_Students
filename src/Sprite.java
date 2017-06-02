@@ -1,17 +1,30 @@
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import java.awt.*;
+
 /**
  * Created by andrew_briasco on 6/1/17.
  */
-public class Sprite{
-    private int x, y, speed;
-    private String pic;
+public class Sprite {
+
+    private int x, y;
+    private Image pic;
+    private Rectangle boundRect;
 
     public Sprite(int x, int y, Image pic)throws SlickException{
         this.pic = pic;
         this.x = x;
         this.y = y;
+        boundRect = new Rectangle(x*100, y*100, pic.getWidth(), pic.getHeight());
+    }
+
+    public Rectangle getBounds(){
+        return boundRect;
+    }
+
+    public boolean isHit(Sprite other){
+        return this.getBounds().intersects(other.getBounds());
     }
 
     public int getX() {
