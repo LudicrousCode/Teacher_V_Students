@@ -8,6 +8,6 @@ public class Projectile extends Sprite {
 
 
     public Projectile(int x, int y, Image pic) throws SlickException{
-        super(x, y, pic);
+        super(x, y);
     }
 }
