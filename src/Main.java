@@ -35,7 +35,7 @@ public class Main extends BasicGame{
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
         /**
-         * plants attack
+         *
          * hit detection
          *     if collision, zombies attack
          * zombies move
@@ -43,12 +43,25 @@ public class Main extends BasicGame{
 
         for (int j = 0; j < plants.length; j++) {
             for (int k = 0; k < plants[0].length; k++){
-                plants[j][k].shoot();
+                Tower p = plants[j][k];
+                p.attack(); //launch projectile if applicable
+
+                for (Zombies z : zombies){
+                    if(p.isHit(z)){ //check for collisions with any zombies
+//                        p.takeDamage(z); //take damage if hit by zombie
+                    }
+                }
+
             }
         }
-//        for(int l = 0; l < zombies.size(); l++){
-//            for(int m = 0; m < projectiles.size(); m++)
-//        }
+        for(int l = 0; l < zombies.size(); l++){
+            Zombies z = zombies.get(l);
+            for(int m = 0; m < projectiles.size(); m++){
+                if(z.isHit(projectiles.get(m))){ //check for collisions with any projectiles
+//                    z.takeDamage(projectiles.get(m)); //take damage if hit
+                }
+            }
+        }
 
     }
 

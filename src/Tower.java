@@ -17,9 +17,8 @@ public class Tower extends Sprite{
     private int price, damage, health;
     private Rectangle boundRect;
 
-    public Tower(int price, int damage, String path, int x, int y) throws SlickException {
-        super(x, y);
-        this.setPic(path);
+    public Tower(int price, int damage, Image pic, int x, int y) throws SlickException {
+        super(x, y, pic);
         this.price = price;
         this.damage = damage;
         boundRect = new Rectangle(x*100, y*100, getPic().getWidth(), getPic().getHeight());
@@ -30,7 +29,7 @@ public class Tower extends Sprite{
         
     }
 
-    public void shoot(){
+    public void attack(){
 
     }
 
