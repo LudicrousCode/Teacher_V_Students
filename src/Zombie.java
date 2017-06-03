@@ -6,13 +6,14 @@ import org.newdawn.slick.SlickException;
 
 public class Zombie extends Sprite{
 
-    private int speed, HP;
+    private int speed, HP, damage;
 
-    public Zombie(int x, int y, Image pic, int speed, int HP) throws SlickException {
+    public Zombie(int x, int y, Image pic, int speed, int HP, int damage) throws SlickException {
         super(x, y);
         this.setPic(pic);
         this.speed = speed;
         this.HP = HP;
+        this.damage = damage;
     }
 
     public void draw(){
@@ -28,6 +29,13 @@ public class Zombie extends Sprite{
             return true;
         }
         return false;
+    }
+    public void takeDamage(int d){
+        HP-= d;
+    }
+
+    public int getDamage(){
+        return damage;
     }
 
 }

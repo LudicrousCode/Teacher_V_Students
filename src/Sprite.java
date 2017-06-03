@@ -16,7 +16,7 @@ public class Sprite {
         this.pic = new Image("res/blank.png");
         this.x = x;
         this.y = y;
-        boundRect = new Rectangle(x*100, y*100, pic.getWidth(), pic.getHeight());
+        boundRect = new Rectangle(x*100+100, y*100+100, pic.getWidth(), pic.getHeight());
     }
     public void setPic(Image img)throws SlickException{
         pic = img;

@@ -6,9 +6,15 @@ import org.newdawn.slick.SlickException;
  */
 public class Projectile extends Sprite {
 
+    private int damage;
 
-    public Projectile(int x, int y, Image pic) throws SlickException{
+
+    public Projectile(int x, int y, Image pic, int damage) throws SlickException{
         super(x, y);
         this.setPic(pic);
+    }
+
+    public int getDamage() {
+        return damage;
     }
 }

@@ -14,7 +14,7 @@ public class Tower extends Sprite{
      * This class will extend Sprite
      */
 
-    private int price, damage, health;
+    private int price, damage, health, cooldown;
     private Rectangle boundRect;
 
     public Tower(int price, int damage, Image pic, int x, int y, int health) throws SlickException {
@@ -31,8 +31,11 @@ public class Tower extends Sprite{
         
     }
 
-    public void attack(){
-
+    public void attack(){//check if the cooldown on launching a projectile is at zero, if true attack
+        if (cooldown == 0)
+            return;
+        else
+            cooldown--;
     }
 
     public int getPrice() {
@@ -49,5 +52,9 @@ public class Tower extends Sprite{
 
     public Rectangle getBoundRect() {
         return boundRect;
+    }
+
+    public void takeDamage(int d){
+        health -= d;
     }
 }
