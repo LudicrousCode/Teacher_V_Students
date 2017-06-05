@@ -63,8 +63,10 @@ public class Main extends BasicGame{
         Input input = gameContainer.getInput();
         //check if mouse clicked
         if(input.isMousePressed(0)){
+            System.out.println("Mouse clicked");
             //check if mouse is clicked on playing field
-            if (input.getMouseX()>100 && input.getMouseX()<700 && input.getMouseY()>100 && input.getMouseY()<1100){
+            if (input.getMouseX()>100 && input.getMouseX()<1200 && input.getMouseY()>100 && input.getMouseY()<700){
+                System.out.println("mouse on playing field");
                 //check if mouse is in placing state for each tower, it true, take money, place tower and set placement to false
                 if (mouse.isPlaceMarkerLauncher()) {
                     money -= 20;
@@ -174,34 +176,38 @@ public class Main extends BasicGame{
             graphics.drawString("On the next Monday morning, as Hopps walks to his classroom he hears the students talking about the virus.", 100, 400);
             graphics.drawString("One of them mentions that Hopps did it. They all turn to see Hopps, and begin chasing after him.", 100, 450);
             graphics.drawString("Luckily, Hopps has enough of a headstart to blockade himself in his classroom before all the students attack him...", 100, 500);
+//            graphics.drawImage(new Image("res/bullet.png"), 500, 500);
+//            graphics.fillRect(100,100,100,100);
 //            graphics.drawImage(a.getPic(), a.getX(), a.getY());
         }
-        //draw temp gameboard:
-        for (int i = 100; i <800 ; i+=100) {
-            graphics.drawLine(100, i, 1100, i);
-        }
-        for (int i = 100; i < 1200; i+=100) {
-            graphics.drawLine(i,100, i, 700);
-        }
-        //render all the plants
-        for (int i = 0; i < plants.length; i++) {
-            for (int j = 0; j < plants[i].length; j++) {
-                if (plants[i][j] != null){
-                    graphics.drawImage(plants[i][j].getPic(),plants[i][j].getX()*100+100,plants[i][j].getY()*100+100);
+        else {
+            //draw temp gameboard:
+            for (int i = 100; i < 800; i += 100) {
+                graphics.drawLine(100, i, 1100, i);
+            }
+            for (int i = 100; i < 1200; i += 100) {
+                graphics.drawLine(i, 100, i, 700);
+            }
+            //render all the plants
+            for (int i = 0; i < plants.length; i++) {
+                for (int j = 0; j < plants[i].length; j++) {
+                    if (plants[i][j] != null) {
+                        graphics.drawImage(plants[i][j].getPic(), plants[i][j].getX() * 100 + 100, plants[i][j].getY() * 100 + 100);
+                    }
                 }
             }
-        }
-        //render all the zombies
-        for (Zombie a : zombies) {
-            graphics.drawImage(a.getPic(), a.getX(), a.getY());
-        }
+            //render all the zombies
+            for (Zombie a : zombies) {
+                graphics.drawImage(a.getPic(), a.getX(), a.getY());
+            }
 
-        //render shop
-        for (MouseOverArea a : shop.getShop()) {
-            a.render(gameContainer, graphics);
+            //render shop
+            for (MouseOverArea a : shop.getShop()) {
+                a.render(gameContainer, graphics);
+            }
+            //render money
+            graphics.drawString("money: " + money, 10, 30);
         }
-        //render money
-        graphics.drawString("money: " + money, 10, 30);
 
 
 

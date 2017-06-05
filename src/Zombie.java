@@ -16,9 +16,9 @@ public class Zombie extends Sprite{
         this.damage = damage;
     }
 
-    public void draw(){
-
-    }
+//    public void draw(){
+//
+//    }
 
     public void move(){
         setX(getX()-speed);
