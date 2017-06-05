@@ -20,6 +20,7 @@ public class Main extends BasicGame{
     private Tower[][] plants;
     private ArrayList<Zombie> zombies;
     private ArrayList<Projectile> projectiles;
+    private ArrayList<Sound> sounds;
 //    private ArrayList<MouseOverArea> shop;
     private Shop shop;
     private int money, gameTime;
@@ -50,6 +51,10 @@ public class Main extends BasicGame{
         mouse = new Mouse();
         shop = new Shop(gameContainer);
         gameTime = 0;
+
+        //initalize the sound array list and fill with sounds
+        sounds = new ArrayList<Sound>();
+        sounds.add(new Sound("res/Sounds/pop2.wav"));
         //test zombie
 //        a = new Zombie(500, 500, new Image("res/marker.png"), 0, 100, 2);
 
@@ -91,6 +96,7 @@ public class Main extends BasicGame{
                     mouse.setPlaceMoneyTree(true);
                     mouse.setPlaceMarkerLauncher(false);
                     mouse.setPlaceQuiz(false);
+                    sounds.get(0).play();
                 }
             }
             else if (shop.getCell(1).isMouseOver()){
@@ -99,6 +105,7 @@ public class Main extends BasicGame{
                     mouse.setPlaceMarkerLauncher(true);
                     mouse.setPlaceMoneyTree(false);
                     mouse.setPlaceQuiz(false);
+                    sounds.get(0).play();
                 }
             }
             else if (shop.getCell(2).isMouseOver()){
@@ -107,6 +114,7 @@ public class Main extends BasicGame{
                     mouse.setPlaceQuiz(true);
                     mouse.setPlaceMoneyTree(false);
                     mouse.setPlaceMarkerLauncher(false);
+                    sounds.get(0).play();
                 }
             }
         }
