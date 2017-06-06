@@ -2,6 +2,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.gui.MouseOverArea;
+import org.newdawn.slick.state.StateBasedGame;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * TODO update shop with pics and more towers?
  * Potentially change the game to be a stateBasedGame, then use states like menu and game and death/win screen
  */
-public class Main extends BasicGame{
+public class Main extends BasicGame {
 
     private Image background;
     private int[][] lawn;
@@ -28,6 +29,11 @@ public class Main extends BasicGame{
     private Mouse mouse;
     //test zombie
     private Zombie a;
+
+    public void initStatesList(GameContainer a){
+
+    }
+
 
     public Main(String title) throws SlickException {
         super(title);
@@ -81,6 +87,7 @@ public class Main extends BasicGame{
                 System.out.println("mouse on playing field");
                 //check if mouse is in placing state for each tower, if true, take money, place tower and set placement to false
                 if (mouse.isPlaceMarkerLauncher()) {
+                    System.out.println("placed tower");
                     money -= 20;
                     mouse.setPlaceMarkerLauncher(false);
                     plants[input.getMouseY() / 100 - 1][input.getMouseX() / 100 - 1] = new MarkerLauncher(input.getMouseX() / 100 - 1, input.getMouseY() / 100 - 1);
@@ -104,6 +111,7 @@ public class Main extends BasicGame{
                     mouse.setPlaceMarkerLauncher(false);
                     mouse.setPlaceQuiz(false);
                     sounds.get(0).play();
+//                    projectiles.add(new Projectile(100, 250, new Image("res/bullet.png"), 5, 2));
                 }
             }
             else if (shop.getCell(1).isMouseOver()){
@@ -146,9 +154,15 @@ public class Main extends BasicGame{
                     if(proj != null)
                         projectiles.add(proj);
                 }
-
-
             }
+        }
+        /**
+         * move the projectiles
+         *
+         */
+        for (Projectile a:projectiles) {
+            a.move();
+
         }
         /**
          * Update the zombie array list
@@ -230,6 +244,11 @@ public class Main extends BasicGame{
                         graphics.drawImage(plants[i][j].getPic(), plants[i][j].getX() * 100 + 100, plants[i][j].getY() * 100 + 100);
                     }
                 }
+            }
+            //render all the projectiles
+            for (Projectile a: projectiles) {
+                graphics.drawImage(a.getImage(), a.getX(), a.getY());
+
             }
             //render all the zombies
             for (Zombie a : zombies) {
