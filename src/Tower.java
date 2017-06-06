@@ -24,6 +24,7 @@ public class Tower extends Sprite{
         this.damage = damage;
         this.health = health;
         boundRect = new Rectangle(x*100, y*100, getPic().getWidth(), getPic().getHeight());
+        cooldown = 0;
 
     }
 
@@ -31,11 +32,15 @@ public class Tower extends Sprite{
         
     }
 
-    public void attack(){//check if the cooldown on launching a projectile is at zero, if true attack
-        if (cooldown == 0)
-            return;
-        else
+    public Projectile attack() throws SlickException{//check if the cooldown on launching a projectile is at zero, if true attack
+        if (cooldown == 0) {
+            cooldown = 100;
+            return new Projectile(getX() + 25, getY() + 25, new Image("res/bullet.png"), damage);
+        }
+        else {
             cooldown--;
+            return null;
+        }
     }
 
     public int getPrice() {

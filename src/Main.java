@@ -72,7 +72,7 @@ public class Main extends BasicGame{
             //check if mouse is clicked on playing field
             if (input.getMouseX()>100 && input.getMouseX()<1200 && input.getMouseY()>100 && input.getMouseY()<700){
                 System.out.println("mouse on playing field");
-                //check if mouse is in placing state for each tower, it true, take money, place tower and set placement to false
+                //check if mouse is in placing state for each tower, if true, take money, place tower and set placement to false
                 if (mouse.isPlaceMarkerLauncher()) {
                     money -= 20;
                     mouse.setPlaceMarkerLauncher(false);
@@ -134,14 +134,12 @@ public class Main extends BasicGame{
         for (int j = 0; j < plants.length; j++) {
             for (int k = 0; k < plants[0].length; k++){
                 Tower p = plants[j][k];
-                if(p != null)
-                    p.attack(); //launch projectile if applicable
+                if(p != null){
+                    Projectile proj = p.attack();
+                    if(proj != null)
+                        projectiles.add(proj);
+                }
 
-//                for (Zombie z : zombies){
-//                    if(p.isHit(z)){ //check for collisions with any zombies
-////                        p.takeDamage(z); //take damage if hit by zombie
-//                    }
-//                }
 
             }
         }
@@ -156,14 +154,22 @@ public class Main extends BasicGame{
             for(int m = 0; m < projectiles.size(); m++){
                 if(z.isHit(projectiles.get(m))){ //check for collisions with any projectiles
                     z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
-                    //TODO check if the zombie's helath <0 and remove it if true
+                    projectiles.remove(m);
+                    //check if z is dead-dead (dead for the second time)
+                    if(z.dead()){
+                        zombies.remove(z);
+                    }
                 }
             }
             z.move();
             if (plants[z.getY()/100-1][z.getX()/100-1] != null){
-                plants[z.getY()/100-1][z.getX()/100-1].takeDamage(z.getDamage());
-                //TODO check if the plant's health <0 and remove if true
-                //TODO remove the projectile once it hits the zombie
+
+                Tower p = plants[z.getY()/100-1][z.getX()/100-1];
+                p.takeDamage(z.getDamage());
+                //check if plant is dead
+                if(p.getHealth() <= 0){
+                    plants[z.getY()/100-1][z.getX()/100-1] = null;
+                }
             }
         }
 
@@ -175,6 +181,7 @@ public class Main extends BasicGame{
             graphics.setColor(Color.black);
             graphics.fillRect(0, 0, 1200, 800);
             graphics.setColor(Color.white);
+
             graphics.drawString("On a warm and sunny April Fools Day, Mr. Hopps decides to pull an epic prank on the students.", 100, 100);
             graphics.drawString("The only problem is, it's a Saturday, so there's no school. What should he do?", 100, 150);
             graphics.drawString("Hopps creates a computer virus that will spam all the student computers with comp sci memes.", 100, 200);
@@ -184,6 +191,7 @@ public class Main extends BasicGame{
             graphics.drawString("On the next Monday morning, as Hopps walks to his classroom he hears the students talking about the virus.", 100, 400);
             graphics.drawString("One of them mentions that Hopps did it. They all turn to see Hopps, and begin chasing after him.", 100, 450);
             graphics.drawString("Luckily, Hopps has enough of a headstart to blockade himself in his classroom before all the students attack him...", 100, 500);
+
 //            graphics.drawImage(new Image("res/bullet.png"), 500, 500);
 //            graphics.fillRect(100,100,100,100);
 //            graphics.drawImage(a.getPic(), a.getX(), a.getY());
@@ -226,4 +234,9 @@ public class Main extends BasicGame{
         app.setDisplayMode(1200, 800, false);
         app.start();
     }
+
+    public void addProjectile(Projectile p){
+        projectiles.add(p);
+    }
+
 }

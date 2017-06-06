@@ -24,12 +24,11 @@ public class Zombie extends Sprite{
         setX(getX()-speed);
     }
 
+
     public boolean dead(){
-        if(HP <= 0){
-            return true;
-        }
-        return false;
+       return (HP <= 0);
     }
+
     public void takeDamage(int d){
         HP-= d;
     }

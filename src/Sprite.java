@@ -23,7 +23,6 @@ public class Sprite {
     }
 
 
-
     public Rectangle getBounds(){
         return boundRect;
     }
