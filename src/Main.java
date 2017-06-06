@@ -41,10 +41,17 @@ public class Main extends BasicGame{
     }
 
     @Override
+    public void mousePressed(int button, int x, int y){
+        //next button
+        if(x >= 550 && x <= 650 && y >= 600 && y <= 650)
+            intro = false;
+    }
+
+    @Override
     public void init(GameContainer gameContainer) throws SlickException {
         lawn = new int[6][10];
         money = 30;
-        intro = false;
+        intro = true;
         plants = new Tower[6][10];
         zombies = new ArrayList<Zombie>();
         projectiles = new ArrayList<Projectile>();
@@ -185,13 +192,19 @@ public class Main extends BasicGame{
             graphics.drawString("On a warm and sunny April Fools Day, Mr. Hopps decides to pull an epic prank on the students.", 100, 100);
             graphics.drawString("The only problem is, it's a Saturday, so there's no school. What should he do?", 100, 150);
             graphics.drawString("Hopps creates a computer virus that will spam all the student computers with comp sci memes.", 100, 200);
-            graphics.drawString("The student computers are infected with the virus, which goes into effect.", 100, 250);
-            graphics.drawString("There are so many memes that most of the computers either crash, or block all other windows.", 100, 300);
+            graphics.drawString("The student computers are infected with the virus, which goes into effect soon after.", 100, 250);
+            graphics.drawString("There are so many memes that most of the computers either crash, or the memes block all other windows.", 100, 300);
             graphics.drawString("The students are angry and confused, but when there are memes roasting the students they guess who did it.", 100, 350);
-            graphics.drawString("On the next Monday morning, as Hopps walks to his classroom he hears the students talking about the virus.", 100, 400);
+            graphics.drawString("On the next Monday morning, as Hopps walks to his classroom, he hears the students talking about the virus.", 100, 400);
             graphics.drawString("One of them mentions that Hopps did it. They all turn to see Hopps, and begin chasing after him.", 100, 450);
             graphics.drawString("Luckily, Hopps has enough of a headstart to blockade himself in his classroom before all the students attack him...", 100, 500);
 
+            graphics.setColor(Color.black);
+            graphics.fillRect(550, 600, 100, 50);
+            graphics.setColor(Color.blue);
+            graphics.setLineWidth(5);
+            graphics.drawRect(550, 600, 100, 50);
+            graphics.drawString("NEXT", 581, 617);
 //            graphics.drawImage(new Image("res/bullet.png"), 500, 500);
 //            graphics.fillRect(100,100,100,100);
 //            graphics.drawImage(a.getPic(), a.getX(), a.getY());
@@ -204,6 +217,12 @@ public class Main extends BasicGame{
             for (int i = 100; i < 1200; i += 100) {
                 graphics.drawLine(i, 100, i, 700);
             }
+//            graphics.setColor(Color.white);
+//            for (int i = 100; i < 700; i+=100) {
+//                for (int j = 100; j < 1100; j+=100) {
+//                    graphics.fillRect(j+1, i+1, 98, 98);
+//                }
+//            }
             //render all the plants
             for (int i = 0; i < plants.length; i++) {
                 for (int j = 0; j < plants[i].length; j++) {
