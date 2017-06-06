@@ -244,22 +244,8 @@ public class Main extends BasicGame {
         }
 
         else {
-
-            //draw temp gameboard:
-            for (int i = 100; i < 800; i += 100) {
-                graphics.drawLine(100, i, 1100, i);
-            }
-
-            for (int i = 100; i < 1200; i += 100) {
-                graphics.drawLine(i, 100, i, 700);
-            }
-//            graphics.setColor(Color.white);
-//            for (int i = 100; i < 700; i+=100) {
-//                for (int j = 100; j < 1100; j+=100) {
-//                    graphics.fillRect(j+1, i+1, 98, 98);
-//                }
-//            }
-
+            //floor
+            graphics.drawImage(new Image("res/floor.png"), 100, 100);
             //render all the plants
             for (int i = 0; i < plants.length; i++) {
                 for (int j = 0; j < plants[i].length; j++) {
@@ -285,6 +271,7 @@ public class Main extends BasicGame {
             }
 
             //render money
+            graphics.setColor(Color.white);
             graphics.drawString("money: " + money, 10, 30);
         }
 
