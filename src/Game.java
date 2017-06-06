@@ -11,7 +11,6 @@ public class Game extends StateBasedGame {
     public static final int WINDOW_HEIGHT = 800;
     public static final boolean FULLSCREEN = false;
 
-    public static final float SCALE = (float) (1.25*((double)WINDOW_WIDTH/1280));
     public static final String GAME_NAME = "Teacher V Students";
 
     public Game(){

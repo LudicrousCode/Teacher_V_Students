@@ -6,20 +6,46 @@ import org.newdawn.slick.SlickException;
 
 public class Zombies extends Sprite{
 
-    private int speed, HP;
+    private int speed, HP, lane;
 
-    public Zombies(int x, int y, Image pic, int speed, int HP) throws SlickException {
-        super(x, y, pic);
+    public Zombies(int x, int y, String path, int speed, int HP, int lane) throws SlickException {
+        super(x, y);
         this.speed = speed;
         this.HP = HP;
+        this.setPic(path);
+        this.lane = lane;
     }
 
-    public void render(){
+    public void draw(){
+
         getPic().draw(getX(), getY());
+
     }
 
-    public void move(){
+    public void update(){
+
+        //while if not touching a plan/tower
         setX(getX()-speed);
+        //else
+        attack();
+    }
+
+    public void attack(){
+
+        //if touching a plant/tower then swtich costumes
+    }
+
+    public void slow(){
+        //if hit by thing that slows things down
+        int c = 5;
+        setSpeed(getSpeed()-5);
+
+        while(c > 0){
+            c--;
+        }
+        if(c == 0){
+            setSpeed(getSpeed()+5);
+        }
     }
 
     public boolean dead(){
@@ -29,6 +55,11 @@ public class Zombies extends Sprite{
         return false;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
 
-
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
 }

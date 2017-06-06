@@ -16,7 +16,7 @@ public class Main extends BasicGame{
     private ArrayList<Projectile> projectiles;
     private int money;
 
-    Image pic = new Image("res/blank.png");
+    String pic = "res/download.png";
     Zombies a = new Zombies(500, 500, pic, 5, 100);
 
     public Main(String title) throws SlickException {
