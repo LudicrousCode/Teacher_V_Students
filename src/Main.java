@@ -15,19 +15,19 @@ import java.util.ArrayList;
  */
 public class Main extends BasicGame{
 
+
     private Image background;
     private int[][] lawn;
     private Tower[][] plants;
     private ArrayList<Zombie> zombies;
     private ArrayList<Projectile> projectiles;
     private ArrayList<Sound> sounds;
-//    private ArrayList<MouseOverArea> shop;
+
     private Shop shop;
-    private int money, gameTime;
+    private int money;
     private boolean intro;
     private Mouse mouse;
-    //test zombie
-    private Zombie a;
+
 
     public Main(String title) throws SlickException {
         super(title);
@@ -47,6 +47,7 @@ public class Main extends BasicGame{
             intro = false;
     }
 
+
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
         lawn = new int[6][10];
@@ -57,67 +58,77 @@ public class Main extends BasicGame{
         projectiles = new ArrayList<Projectile>();
         mouse = new Mouse();
         shop = new Shop(gameContainer);
-        gameTime = 0;
+
 
         //initalize the sound array list and fill with sounds
         sounds = new ArrayList<Sound>();
         sounds.add(new Sound("res/Sounds/pop2.wav"));
-        //test zombie
-//        a = new Zombie(500, 500, new Image("res/marker.png"), 0, 100, 2);
+
 
     }
 
+
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
-        //update the game time
-        gameTime++;
+
         //gets input from user
         Input input = gameContainer.getInput();
+
         //check if mouse clicked
         if(input.isMousePressed(0)){
             System.out.println("Mouse clicked");
+
             //check if mouse is clicked on playing field
             if (input.getMouseX()>100 && input.getMouseX()<1200 && input.getMouseY()>100 && input.getMouseY()<700){
                 System.out.println("mouse on playing field");
+
                 //check if mouse is in placing state for each tower, if true, take money, place tower and set placement to false
                 if (mouse.isPlaceMarkerLauncher()) {
                     money -= 20;
                     mouse.setPlaceMarkerLauncher(false);
                     plants[input.getMouseY() / 100 - 1][input.getMouseX() / 100 - 1] = new MarkerLauncher(input.getMouseX() / 100 - 1, input.getMouseY() / 100 - 1);
                 }
+
                 else if (mouse.isPlaceMoneyTree()) {
                     money -= 10;
                     mouse.setPlaceMoneyTree(false);
                     plants[input.getMouseY() / 100 - 1][input.getMouseX() / 100 - 1] = new MoneyTree(input.getMouseX() / 100 - 1, input.getMouseY() / 100 - 1);
                 }
+
                 else if (mouse.isPlaceQuiz()) {
                     money -= 30;
                     mouse.setPlaceQuiz(false);
                     plants[input.getMouseY() / 100 - 1][input.getMouseX() / 100 - 1] = new Quiz(input.getMouseX() / 100 - 1, input.getMouseY() / 100 - 1);
                 }
             }
-            //check if mouse is over one of the shop areas, if so and have enough money set mouse state to placing that tower
+
+            //check if mouse is over any of the shop areas, if so and have enough money set mouse state to placing that tower
             else if (shop.getCell(0).isMouseOver()){
                 if (money - 10 >= 0) {//check if player has enough money
                     System.out.println("Tower Bought");
+
                     mouse.setPlaceMoneyTree(true);
                     mouse.setPlaceMarkerLauncher(false);
                     mouse.setPlaceQuiz(false);
                     sounds.get(0).play();
                 }
             }
+
             else if (shop.getCell(1).isMouseOver()){
                 if (money - 20 >= 0) {
                     System.out.println("Tower Bought");
+
                     mouse.setPlaceMarkerLauncher(true);
                     mouse.setPlaceMoneyTree(false);
                     mouse.setPlaceQuiz(false);
                     sounds.get(0).play();
                 }
             }
+
             else if (shop.getCell(2).isMouseOver()){
                 if (money - 30 >= 0) {
                     System.out.println("Tower Bought");
+
                     mouse.setPlaceQuiz(true);
                     mouse.setPlaceMoneyTree(false);
                     mouse.setPlaceMarkerLauncher(false);
@@ -125,65 +136,71 @@ public class Main extends BasicGame{
                 }
             }
         }
-        /**
-         *
-         * hit detection
-         *     if collision, zombies attack
-         * zombies move
-         */
 
         /**
-         * For buying and clicking:
-         * mousePressed() / MouseReleased to detect a click withing a certain area.
-         * Also could use mouseDragged with oldX,oldY and newX,newY.
-         * make sure to check that you can place a plant there (or just let it override what's there)
+         * Starting hit detection part of update()
+         * Part 1: Towers
+         *      Call each tower's attack() method
          */
         for (int j = 0; j < plants.length; j++) {
             for (int k = 0; k < plants[0].length; k++){
                 Tower p = plants[j][k];
-                if(p != null){
+
+                if(p != null){ //if there's a plant in that square
                     Projectile proj = p.attack();
                     if(proj != null)
-                        projectiles.add(proj);
+                        projectiles.add(proj); //launching projectile
                 }
 
 
             }
         }
+
         /**
-         * Update the zombie array list
-         * 1: check if the zombie is hit by a projectile
-         * 2: move the zombie
-         * 3: check if the zombie has hit a plant
+         * Part 2: Zombies
+         * For each zombie:
+         *      Check if hit by projectile
+         *      Check if intersects a plant
+         *          If hit plant, do damage
+         *          Else move
          */
         for(int l = 0; l < zombies.size(); l++){
             Zombie z = zombies.get(l);
+
             for(int m = 0; m < projectiles.size(); m++){
+
                 if(z.isHit(projectiles.get(m))){ //check for collisions with any projectiles
                     z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
-                    projectiles.remove(m);
+                    projectiles.remove(m); //remove projectile from projectile list
+
                     //check if z is dead-dead (dead for the second time)
                     if(z.dead()){
                         zombies.remove(z);
                     }
                 }
             }
-            z.move();
-            if (plants[z.getY()/100-1][z.getX()/100-1] != null){
+
+            if (plants[z.getY()/100-1][z.getX()/100-1] != null){ //if square is occupied
 
                 Tower p = plants[z.getY()/100-1][z.getX()/100-1];
-                p.takeDamage(z.getDamage());
+                p.takeDamage(z.getDamage()); //do damage
+
                 //check if plant is dead
                 if(p.getHealth() <= 0){
-                    plants[z.getY()/100-1][z.getX()/100-1] = null;
+                    plants[z.getY()/100-1][z.getX()/100-1] = null; //remove
                 }
+            }
+            else{
+                z.move(); //if nothing in the way, move forward
             }
         }
 
     }
 
+
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
+
         if(intro) {
             graphics.setColor(Color.black);
             graphics.fillRect(0, 0, 1200, 800);
@@ -209,11 +226,14 @@ public class Main extends BasicGame{
 //            graphics.fillRect(100,100,100,100);
 //            graphics.drawImage(a.getPic(), a.getX(), a.getY());
         }
+
         else {
+
             //draw temp gameboard:
             for (int i = 100; i < 800; i += 100) {
                 graphics.drawLine(100, i, 1100, i);
             }
+
             for (int i = 100; i < 1200; i += 100) {
                 graphics.drawLine(i, 100, i, 700);
             }
@@ -223,6 +243,7 @@ public class Main extends BasicGame{
 //                    graphics.fillRect(j+1, i+1, 98, 98);
 //                }
 //            }
+
             //render all the plants
             for (int i = 0; i < plants.length; i++) {
                 for (int j = 0; j < plants[i].length; j++) {
@@ -231,6 +252,7 @@ public class Main extends BasicGame{
                     }
                 }
             }
+
             //render all the zombies
             for (Zombie a : zombies) {
                 graphics.drawImage(a.getPic(), a.getX(), a.getY());
@@ -240,22 +262,18 @@ public class Main extends BasicGame{
             for (MouseOverArea a : shop.getShop()) {
                 a.render(gameContainer, graphics);
             }
+
             //render money
             graphics.drawString("money: " + money, 10, 30);
         }
 
-
-
     }
+
 
     public static void main(String[] args) throws SlickException{
         AppGameContainer app = new AppGameContainer(new Main("Teacher V Students"));
         app.setDisplayMode(1200, 800, false);
         app.start();
-    }
-
-    public void addProjectile(Projectile p){
-        projectiles.add(p);
     }
 
 }

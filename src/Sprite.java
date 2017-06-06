@@ -8,9 +8,14 @@ import java.awt.*;
  */
 public class Sprite {
 
+    /**
+     * Base class for all mobs in game, including Towers, Zombies, and Projectiles
+     */
+
     private int x, y;
     private Image pic;
     private Rectangle boundRect;
+
 
     public Sprite(int x, int y)throws SlickException{
         this.pic = new Image("res/blank.png");

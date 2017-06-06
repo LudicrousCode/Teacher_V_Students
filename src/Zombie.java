@@ -6,6 +6,10 @@ import org.newdawn.slick.SlickException;
 
 public class Zombie extends Sprite{
 
+    /**
+     * Base class for all students / enemies
+     */
+
     private int speed, HP, damage;
 
     public Zombie(int x, int y, Image pic, int speed, int HP, int damage) throws SlickException {
@@ -16,19 +20,18 @@ public class Zombie extends Sprite{
         this.damage = damage;
     }
 
-//    public void draw(){
-//
-//    }
-
     public void move(){
         setX(getX()-speed);
     }
-
 
     public boolean dead(){
        return (HP <= 0);
     }
 
+    /**
+     * Apply damage to this Zombie
+     * @param d Amount of damage to be taken
+     */
     public void takeDamage(int d){
         HP-= d;
     }

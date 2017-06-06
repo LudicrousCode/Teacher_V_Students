@@ -10,12 +10,12 @@ public class Tower extends Sprite{
 
     /**
      * This class will serve as the base class for all defense towers (passive and active)
-     * IDK if it'll be abstract or not
      * This class will extend Sprite
      */
 
     private int price, damage, health, cooldown;
     private Rectangle boundRect;
+
 
     public Tower(int price, int damage, Image pic, int x, int y, int health) throws SlickException {
         super(x, y);
@@ -28,10 +28,11 @@ public class Tower extends Sprite{
 
     }
 
-    public void render(){
-        
-    }
-
+    /**
+     * Method for Tower attacks
+     * @return Projectile to be shot, or null if cooldown isn't done
+     * @throws SlickException if Image for Projectile isn't found
+     */
     public Projectile attack() throws SlickException{//check if the cooldown on launching a projectile is at zero, if true attack
         if (cooldown == 0) {
             cooldown = 100;
@@ -55,10 +56,18 @@ public class Tower extends Sprite{
         return health;
     }
 
+    /**
+     * Useful for hit detection
+     * @return a Rectangle that encloses this Tower
+     */
     public Rectangle getBoundRect() {
         return boundRect;
     }
 
+    /**
+     * Apply damage to this Tower
+     * @param d Amount of damage to be taken
+     */
     public void takeDamage(int d){
         health -= d;
     }
