@@ -154,7 +154,7 @@ public class Main extends BasicGame {
             for (int k = 0; k < plants[0].length; k++){
                 Tower p = plants[j][k];
 
-                if(p != null){ //if there's a plant in that square
+                if(p != null && p.isOffensive()){ //if there's a plant in that square
                     Projectile proj = p.attack();
                     if(proj != null)
                         projectiles.add(proj); //launching projectile
@@ -191,6 +191,8 @@ public class Main extends BasicGame {
                     if(z.dead()){
                         zombies.remove(z);
                     }
+                    if(projectiles.get(m).getX() > 1200)
+                        projectiles.remove(m);
                 }
             }
 

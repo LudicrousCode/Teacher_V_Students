@@ -15,9 +15,10 @@ public class Tower extends Sprite{
 
     private int price, damage, health, cooldown;
     private Rectangle boundRect;
+    private boolean isOffensive;
 
 
-    public Tower(int price, int damage, Image pic, int x, int y, int health) throws SlickException {
+    public Tower(int price, int damage, Image pic, int x, int y, int health, boolean b) throws SlickException {
         super(x, y);
         this.setPic(pic);
         this.price = price;
@@ -25,6 +26,7 @@ public class Tower extends Sprite{
         this.health = health;
         boundRect = new Rectangle(x*100, y*100, getPic().getWidth(), getPic().getHeight());
         cooldown = 0;
+        isOffensive = b;
 
     }
 
@@ -51,6 +53,10 @@ public class Tower extends Sprite{
     public int getDamage() {
         return damage;
     }
+
+    public boolean isOffensive(){ return isOffensive; }
+
+    public void setOffensive(boolean b){ isOffensive = b; }
 
     public int getHealth() {
         return health;

@@ -8,7 +8,7 @@ public class MarkerLauncher extends Tower {
 
 
     public MarkerLauncher(int x, int y)throws SlickException{
-        super(20, 0, new Image("res/Tower/markerLauncher.png"), x, y, 50);
+        super(20, 0, new Image("res/Tower/markerLauncher.png"), x, y, 50, true);
         //int price, int damage, Image pic, int x, int y
 
     }
