@@ -38,7 +38,7 @@ public class Tower extends Sprite{
     public Projectile attack() throws SlickException{//check if the cooldown on launching a projectile is at zero, if true attack
         if (cooldown == 0) {
             cooldown = 100;
-            return new Projectile(getX() + 25, getY() + 25, new Image("res/bullet.png"), damage, 2);
+            return new Projectile( (getX()+1) * 100 + 25, (getY()+1) * 100 + 25, new Image("res/bullet.png"), damage, 4);
         }
         else {
             cooldown--;
