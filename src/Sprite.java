@@ -8,20 +8,24 @@ import java.awt.*;
  */
 public class Sprite {
 
+    /**
+     * Base class for all mobs in game, including Towers, Zombies, and Projectiles
+     */
+
     private int x, y;
     private Image pic;
     private Rectangle boundRect;
 
+
     public Sprite(int x, int y)throws SlickException{
-        pic = new Image("res/blank.png");
+        this.pic = new Image("res/blank.png");
         this.x = x;
         this.y = y;
-        boundRect = new Rectangle(x*100, y*100, pic.getWidth(), pic.getHeight());
+        boundRect = new Rectangle(x*100+100, y*100+100, pic.getWidth(), pic.getHeight());
     }
-    public void setPic(String path)throws SlickException{
-        pic = new Image(path);
+    public void setPic(Image img)throws SlickException{
+        pic = img;
     }
-
 
 
     public Rectangle getBounds(){
