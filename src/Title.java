@@ -41,8 +41,6 @@ public class Title extends BasicGameState{
         graphics.drawString("One of them mentions that Hopps did it. They all turn to see Hopps, and begin chasing after him.", 100, 450);
         graphics.drawString("Luckily, Hopps has enough of a headstart to blockade himself in his classroom before all the students attack him...", 100, 500);
 
-        graphics.setColor(Color.black);
-        graphics.fillRect(550, 600, 100, 50);
         graphics.setColor(Color.blue);
         graphics.setLineWidth(5);
         graphics.drawRect(550, 600, 100, 50);
@@ -56,7 +54,7 @@ public class Title extends BasicGameState{
         if (a.isMousePressed(0)) {
             System.out.println("mouse clicked");
             if (a.getMouseX() >= 550 && a.getMouseX() <= 650 && a.getMouseY() >= 600 && a.getMouseY() <= 650)
-                game.enterState(1);
+                game.enterState(3);
         }
     }
 

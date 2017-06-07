@@ -16,10 +16,10 @@ import java.util.ArrayList;
  */
 public class Main extends StateBasedGame {
 
-    public static final String gamename = "Hops V Students";
+    public static final String gamename = "Hopps V Students";
 
     public Main(){
-        super("Hops V Students");
+        super("Hopps V Students");
     }
 
 //    private Image background;
@@ -39,6 +39,7 @@ public class Main extends StateBasedGame {
         this.addState(new Title());
         this.addState(new MainGame());
         this.addState(new EndGame());
+        this.addState(new Logo());
 //        this.enterState(0);
     }
 //    public Main(String gamename){

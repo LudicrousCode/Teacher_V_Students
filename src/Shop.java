@@ -1,6 +1,7 @@
 import org.newdawn.slick.*;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.gui.MouseOverArea;
+import org.newdawn.slick.state.StateBasedGame;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Andrew on 6/2/2017.
  */
-public class Shop {
+public class Shop{
     private ArrayList<MouseOverArea> shop;
 
     public Shop(GameContainer c)throws SlickException{
