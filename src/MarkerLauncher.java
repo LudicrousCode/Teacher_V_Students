@@ -11,5 +11,6 @@ public class MarkerLauncher extends Tower {
         super(20, 0, new Image("res/Tower/square.png"), x, y, 50, true);
         //int price, int damage, Image pic, int x, int y
 
+        setCooldown(200);
     }
 }

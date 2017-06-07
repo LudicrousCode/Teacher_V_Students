@@ -154,6 +154,9 @@ public class MainGame extends BasicGameState {
                     if(proj != null)
                         projectiles.add(proj); //launching projectile
                 }
+                if (p != null && p instanceof MoneyTree && ((MoneyTree) p).genMoney()){
+                    money += 30;
+                }
             }
         }
         /**
