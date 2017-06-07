@@ -34,7 +34,7 @@ public class MainGame extends BasicGameState {
         this.game = stateBasedGame;
         background = new Image("res/floor.png");
         lawn = new int[6][10];
-        money = 30;
+        money = 100;
         plants = new Tower[6][10];
         zombies = new ArrayList<Zombie>();
         projectiles = new ArrayList<Projectile>();
@@ -153,6 +153,9 @@ public class MainGame extends BasicGameState {
                     Projectile proj = p.attack();
                     if(proj != null)
                         projectiles.add(proj); //launching projectile
+                }
+                if (p != null && p instanceof MoneyTree && ((MoneyTree) p).genMoney()){
+                    money += 30;
                 }
             }
         }

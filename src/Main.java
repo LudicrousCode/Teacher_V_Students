@@ -17,9 +17,6 @@ import java.util.ArrayList;
 public class Main extends StateBasedGame {
 
     public static final String gamename = "Hops V Students";
-    public static int title = 0;
-    public static int mainGame = 1;
-    public static int endGame = 2;
 
     public Main(){
         super("Hops V Students");
