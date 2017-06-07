@@ -23,8 +23,7 @@ public class MainGame extends BasicGameState {
     private Shop shop;
     private int money;
     private Mouse mouse;
-
-
+    private int GameTime = 0;
 
     public int getID() {
         return ID;
@@ -48,6 +47,7 @@ public class MainGame extends BasicGameState {
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         //floor
         graphics.drawImage(background, 100, 100);
+
         //render all the plants
         for (int i = 0; i < plants.length; i++) {
             for (int j = 0; j < plants[i].length; j++) {
@@ -79,6 +79,11 @@ public class MainGame extends BasicGameState {
 
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         Input input = gameContainer.getInput();
+
+        GameTime++;
+
+        genZombies();
+
         if (input.isMousePressed(0)){
             //check if mouse is clicked on playing field
             if (input.getMouseX()>100 && input.getMouseX()<1200 && input.getMouseY()>100 && input.getMouseY()<700){
@@ -211,6 +216,13 @@ public class MainGame extends BasicGameState {
 
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         System.out.println("Entered MainGame State");
+        genZombies();
+    }
+
+    public void genZombies() throws SlickException{
+        if(GameTime % 200 == 0) {
+            zombies.add(new Zombie(1000, (int)((Math.random()*6) + 1)*100, new Image("res/TestZombie.png"), 1, 100, 2));
+        }
     }
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {

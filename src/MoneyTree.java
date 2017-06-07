@@ -13,6 +13,7 @@ public class MoneyTree extends Tower {
         setCooldown(300);
     }
 
+
     public boolean genMoney(){
         if(getCooldown() == 0){
             setCooldown(300);

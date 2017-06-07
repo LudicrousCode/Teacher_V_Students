@@ -20,9 +20,7 @@ public class Zombie extends Sprite{
         this.damage = damage;
     }
 
-    public void move(){
-        setX(getX()-speed);
-    }
+    public void move(){setX(getX()-speed);}
 
     public boolean dead(){
        return (HP <= 0);
@@ -40,4 +38,7 @@ public class Zombie extends Sprite{
         return damage;
     }
 
-}
+    public void getSlower(int s){ speed -= s;}
+
+    }
+
