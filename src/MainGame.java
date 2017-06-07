@@ -220,8 +220,11 @@ public class MainGame extends BasicGameState {
     }
 
     public void genZombies() throws SlickException{
-        if(GameTime % 200 == 0) {
-            zombies.add(new Zombie(1000, (int)((Math.random()*6) + 1)*100, new Image("res/TestZombie.png"), 1, 100, 2));
+        if(GameTime % 300 == 0) {
+            zombies.add(new Zombie(1000, (int)((Math.random()*6) + 1)*100, new Image("res/TestZombie.png"), 1, 100, 4));
+        }
+        if(GameTime == 2500){
+            //spawn zombie boss
         }
     }
 
