@@ -254,6 +254,7 @@ public class MainGame extends BasicGameState {
     }
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        System.out.println("Left MainGame");
 
     }
 
