@@ -6,7 +6,6 @@ import org.newdawn.slick.SlickException;
 
 public class Zombies extends Sprite{
 
-
     private int speed, HP, lane;
 
     public Zombies(int x, int y, String path, int speed, int HP, int lane) throws SlickException {
