@@ -36,11 +36,11 @@ public class Main extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        this.addState(new Title());
-        this.addState(new MainGame());
-        this.addState(new EndGame());
-        this.addState(new Logo());
-        this.addState(new Level2());
+        this.addState(new Title());//0
+        this.addState(new MainGame());//1
+        this.addState(new EndGame());//2
+        this.addState(new Logo());//3
+        this.addState(new Level2());//4
         gameContainer.setMinimumLogicUpdateInterval(20);
         gameContainer.setMaximumLogicUpdateInterval(20);
 //        this.enterState(0);

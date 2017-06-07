@@ -3,6 +3,10 @@ import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.CrossStateTransition;
+import org.newdawn.slick.state.transition.EmptyTransition;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import java.util.ArrayList;
 
@@ -198,20 +202,38 @@ public class MainGame extends BasicGameState {
                         projectiles.remove(m);
                 }
             }
+            if(z.getX()/100-1 >-1) {
+                if (plants[z.getY() / 100 - 1][z.getX() / 100 - 1] != null) { //if square is occupied
 
-            if (plants[z.getY()/100-1][z.getX()/100-1] != null){ //if square is occupied
+                    Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
+                    p.takeDamage(z.getDamage()); //do damage
 
-                Tower p = plants[z.getY()/100-1][z.getX()/100-1];
-                p.takeDamage(z.getDamage()); //do damage
-
-                //check if plant is dead
-                if(p.getHealth() <= 0){
-                    plants[z.getY()/100-1][z.getX()/100-1] = null; //remove
+                    //check if plant is dead
+                    if (p.getHealth() <= 0) {
+                        plants[z.getY() / 100 - 1][z.getX() / 100 - 1] = null; //remove
+                    }
+                } else {
+                    z.move(); //if nothing in the way, move forward
                 }
             }
-            else{
-                z.move(); //if nothing in the way, move forward
+            else if (z.getX()/100-1<-1){
+//                GameState target = game.getState(4);
+//                final long start = System.currentTimeMillis();
+//                CrossStateTransition t = new CrossStateTransition(target) {
+//                    @Override
+//                    public boolean isComplete() {
+//                        return (System.currentTimeMillis() - start > 2000);
+//                    }
+//
+//                    @Override
+//                    public void init(GameState gameState, GameState gameState1) {
+//                    }
+//                };
+                game.enterState(4, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.red, 2000));
+//                game.enterState(4, t, new EmptyTransition());
             }
+            else
+                z.move();
         }
     }
 
@@ -221,8 +243,8 @@ public class MainGame extends BasicGameState {
     }
 
     public void genZombies() throws SlickException{
-        if(GameTime % 400 == 0) {
-            zombies.add(new Zombie(1000, (int)((Math.random()*6) + 1)*100, new Image("res/TestZombie.png"), 1, 100, 4));
+        if(GameTime % 200 == 0) {
+            zombies.add(new Zombie(1000, (int)((Math.random()*6) + 1)*100, new Image("res/TestZombie.png"), 2, 100, 2));
         }
         if(GameTime == 2500){
             //spawn zombie boss
