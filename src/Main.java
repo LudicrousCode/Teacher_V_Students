@@ -40,6 +40,9 @@ public class Main extends StateBasedGame {
         this.addState(new MainGame());
         this.addState(new EndGame());
         this.addState(new Logo());
+        this.addState(new Level2());
+        gameContainer.setMinimumLogicUpdateInterval(20);
+        gameContainer.setMaximumLogicUpdateInterval(20);
 //        this.enterState(0);
     }
 //    public Main(String gamename){

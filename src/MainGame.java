@@ -181,6 +181,7 @@ public class MainGame extends BasicGameState {
          *          Else move
          */
         for(int l = 0; l < zombies.size(); l++){
+            System.out.println("zombie: " + l);
             Zombie z = zombies.get(l);
 
             for(int m = 0; m < projectiles.size(); m++){
@@ -216,16 +217,18 @@ public class MainGame extends BasicGameState {
 
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         System.out.println("Entered MainGame State");
-        genZombies();
+//        genZombies();
     }
 
     public void genZombies() throws SlickException{
-        if(GameTime % 300 == 0) {
+        if(GameTime % 400 == 0) {
             zombies.add(new Zombie(1000, (int)((Math.random()*6) + 1)*100, new Image("res/TestZombie.png"), 1, 100, 4));
         }
         if(GameTime == 2500){
             //spawn zombie boss
         }
+        if (GameTime >2500 && zombies.size() == 0)
+            game.enterState(4);
     }
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {

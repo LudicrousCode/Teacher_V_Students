@@ -33,6 +33,8 @@ public class Sprite {
     }
 
     public boolean isHit(Sprite other){
+        if (this.getBounds().intersects(other.getBounds()))
+            System.out.println("true intersect");
         return this.getBounds().intersects(other.getBounds());
     }
 
