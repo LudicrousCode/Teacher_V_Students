@@ -43,7 +43,7 @@ public class EndGame extends BasicGameState {
         else if(rand == 4)
             graphics.drawImage(new Image("res/EndScreen/you're_bad.png"), 530, 300);
         else
-            graphics.drawImage(new Image("res/EndScreen/you_should_really_reconsider_your_life_choices.png"), 218, 300);
+            graphics.drawImage(new Image("res/EndScreen/you_should_really_reconsider_your_life_choices.png"), 318, 300);
 
         graphics.setColor(Color.blue);
         graphics.setLineWidth(5);
