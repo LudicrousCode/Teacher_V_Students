@@ -22,7 +22,7 @@ public class Main extends StateBasedGame {
         super("Hopps V Students");
     }
 
-//    private Image background;
+//    private Image background;;
 //    private int[][] lawn;
 //    private Tower[][] plants;
 //    private ArrayList<Zombie> zombies;
