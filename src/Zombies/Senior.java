@@ -1,3 +1,6 @@
+package Zombies;
+
+import Zombies.Zombie;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 

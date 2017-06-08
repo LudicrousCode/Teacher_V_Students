@@ -1,10 +1,9 @@
-import org.newdawn.slick.*;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.gui.MouseOverArea;
-import org.newdawn.slick.state.StateBasedGame;
+package Setup;
 
-import java.util.ArrayList;
+import GameStates.EndGame;
+import GameStates.MainGame;
+import org.newdawn.slick.*;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Created by andrew_briasco on 5/8/17.
@@ -40,7 +39,6 @@ public class Main extends StateBasedGame {
         this.addState(new MainGame());//1
         this.addState(new EndGame());//2
         this.addState(new Logo());//3
-        this.addState(new Level2());//4
         gameContainer.setMinimumLogicUpdateInterval(20);
         gameContainer.setMaximumLogicUpdateInterval(20);
 //        this.enterState(0);

@@ -1,3 +1,5 @@
+package Towers;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -6,7 +8,7 @@ import java.awt.*;
 /**
  * Created by clarissa_briasco on 6/1/17.
  */
-public class Tower extends Sprite{
+public class Tower extends Sprite {
 
     /**
      * This class will serve as the base class for all defense towers (passive and active)

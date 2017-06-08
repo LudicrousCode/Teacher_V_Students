@@ -1,3 +1,5 @@
+package Setup;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.gui.MouseOverArea;

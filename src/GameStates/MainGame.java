@@ -1,10 +1,12 @@
+package GameStates;
+
+import Towers.MoneyTree;
+import Towers.Tower;
+import Zombies.Zombie;
 import org.newdawn.slick.*;
 import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.CrossStateTransition;
-import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
@@ -246,7 +248,7 @@ public class MainGame extends BasicGameState {
             zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/drew.png"), 2, 100, 2));
         }
         if(GameTime == 2500){
-            //spawn zombie boss
+            //spawn zombie boss characterized to each level
         }
         if (GameTime >2500 && zombies.size() == 0)
             game.enterState(4);
