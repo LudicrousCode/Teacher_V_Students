@@ -1,3 +1,6 @@
+package Towers;
+
+import Towers.Tower;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 

@@ -1,10 +1,10 @@
-/**
+package Zombies; /**
  * Created by rachel_chau on 6/2/17.
  */
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Zombie extends Sprite{
+public class Zombie extends Sprite {
 
     /**
      * Base class for all students / enemies
