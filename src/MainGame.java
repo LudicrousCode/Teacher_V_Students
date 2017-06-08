@@ -246,7 +246,7 @@ public class MainGame extends BasicGameState {
             zombies.add(new Zombie(1000, (int)((Math.random()*6) + 1)*100, new Image("res/TestZombie.png"), 2, 100, 2));
         }
         if(GameTime == 2500){
-            //spawn zombie boss
+            //spawn zombie boss characterized to each level
         }
         if (GameTime >2500 && zombies.size() == 0)
             game.enterState(4);
