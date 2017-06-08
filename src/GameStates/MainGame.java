@@ -168,6 +168,7 @@ public class MainGame extends BasicGameState {
                         projectiles.add(proj); //launching projectile
                 }
                 if (p != null && p instanceof MoneyTree && ((MoneyTree) p).genMoney()){
+                    sounds.get(1).play();
                     money += 30;
                 }
             }
@@ -200,6 +201,7 @@ public class MainGame extends BasicGameState {
 
                     //check if z is dead-dead (dead for the second time)
                     if(z.dead()){
+                        sounds.get(3).play();
                         zombies.remove(z);
                     }
                     if(projectiles.get(m).getX() > 1200)
@@ -211,6 +213,7 @@ public class MainGame extends BasicGameState {
 
                     Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
                     p.takeDamage(z.getDamage()); //do damage
+                    sounds.get(2).play();
 
                     //check if plant is dead
                     if (p.getHealth() <= 0) {
@@ -259,7 +262,18 @@ public class MainGame extends BasicGameState {
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         System.out.println("Left MainGame");
-
+        GameTime = 0;
+//        for (int i = 0; i < plants.length; i++) {
+//            for (int j = 0; j < plants[i].length; j++) {
+//                if(plants[i][j] != null) {
+//                    plants[i][j] = null;
+//                    System.out.println("plant removed");
+//                }
+//            }
+//        }
+        plants = new Tower[6][10];
+        zombies.clear();
+        projectiles.clear();
     }
 
 
