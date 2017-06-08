@@ -230,7 +230,7 @@ public class MainGame extends BasicGameState {
 //                    public void init(GameState gameState, GameState gameState1) {
 //                    }
 //                };
-                game.enterState(4, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.red, 2000));
+                game.enterState(3, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.red, 2000));
 //                game.enterState(4, t, new EmptyTransition());
             }
             else
@@ -250,8 +250,8 @@ public class MainGame extends BasicGameState {
         if(GameTime == 2500){
             //spawn zombie boss characterized to each level
         }
-        if (GameTime >2500 && zombies.size() == 0)
-            game.enterState(4);
+//        if (GameTime >2500 && zombies.size() == 0)
+//            game.enterState(4);
     }
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
