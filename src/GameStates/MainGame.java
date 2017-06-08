@@ -22,6 +22,7 @@ public class MainGame extends BasicGameState {
 
     private Image background;
     private Tower[][] plants;
+    private Tower[] towers;
     private ArrayList<Zombie> zombies;
     private ArrayList<Projectile> projectiles;
     private ArrayList<Sound> sounds;
@@ -37,7 +38,7 @@ public class MainGame extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.game = stateBasedGame;
         background = new Image("res/floor.png");
-        money = 100;
+        money = 50;
         plants = new Tower[6][10];
         zombies = new ArrayList<Zombie>();
         projectiles = new ArrayList<Projectile>();
@@ -49,7 +50,7 @@ public class MainGame extends BasicGameState {
         sounds.add(new Sound("res/Sounds/ZombieBite.wav")); //when zombies are attacking a plant
         sounds.add(new Sound("res/Sounds/ZombieDeath.wav")); //when a zombie dies
         gameContainer.setShowFPS(false);
-
+        towers = new Tower[10];
     }
 
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
@@ -79,6 +80,15 @@ public class MainGame extends BasicGameState {
         for (MouseOverArea a : shop.getShop()) {
             a.render(gameContainer, graphics);
         }
+        towers[0] = new MoneyTree(100, 700);
+        towers[1] = new MarkerLauncher(200, 700);
+        for (int i = 1; i < 11; i++) {
+            graphics.setColor(Color.white);
+            graphics.drawRect(i*100, 700, 100, 100);
+            graphics.drawRect(i*100+60, 700, 40, 28);
+            if(towers[i-1] != null)
+                graphics.drawString(towers[i-1].getPrice() + "", i*100+65, 705);
+        }
 
         //render money
         graphics.setColor(Color.white);
@@ -93,6 +103,7 @@ public class MainGame extends BasicGameState {
         genZombies();
 
         if (input.isMousePressed(0)){
+            System.out.println(input.getMouseX() + ", " + input.getMouseY());
             //check if mouse is clicked on playing field
             if (input.getMouseX()>100 && input.getMouseX()<1200 && input.getMouseY()>100 && input.getMouseY()<700){
                 System.out.println("mouse on playing field");
