@@ -1,6 +1,7 @@
 package Zombies; /**
  * Created by rachel_chau on 6/2/17.
  */
+import Setup.Sprite;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 

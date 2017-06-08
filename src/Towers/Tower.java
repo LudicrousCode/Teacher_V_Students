@@ -1,5 +1,7 @@
 package Towers;
 
+import Setup.Projectile;
+import Setup.Sprite;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
