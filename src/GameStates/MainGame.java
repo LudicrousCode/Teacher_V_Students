@@ -230,7 +230,7 @@ public class MainGame extends BasicGameState {
 //                    public void init(GameState gameState, GameState gameState1) {
 //                    }
 //                };
-                game.enterState(3, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.red, 2000));
+                game.enterState(2, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.red, 2000));
 //                game.enterState(4, t, new EmptyTransition());
             }
             else
