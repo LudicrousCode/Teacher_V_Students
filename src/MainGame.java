@@ -19,7 +19,6 @@ public class MainGame extends BasicGameState {
     private StateBasedGame game;
 
     private Image background;
-    private int[][] lawn;
     private Tower[][] plants;
     private ArrayList<Zombie> zombies;
     private ArrayList<Projectile> projectiles;
@@ -36,7 +35,6 @@ public class MainGame extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.game = stateBasedGame;
         background = new Image("res/floor.png");
-        lawn = new int[6][10];
         money = 100;
         plants = new Tower[6][10];
         zombies = new ArrayList<Zombie>();
