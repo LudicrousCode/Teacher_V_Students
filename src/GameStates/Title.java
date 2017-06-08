@@ -1,4 +1,4 @@
-package Setup;
+package GameStates;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;

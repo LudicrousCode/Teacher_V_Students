@@ -2,6 +2,7 @@ package Setup;
 
 import GameStates.EndGame;
 import GameStates.MainGame;
+import GameStates.Title;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
