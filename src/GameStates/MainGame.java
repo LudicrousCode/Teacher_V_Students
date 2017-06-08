@@ -44,7 +44,9 @@ public class MainGame extends BasicGameState {
         mouse = new Mouse();
         shop = new Shop(gameContainer);
         sounds = new ArrayList<Sound>();
-        sounds.add(new Sound("res/Sounds/pop2.wav"));
+        sounds.add(new Sound("res/Sounds/pop2.wav")); //clicking an item in the shoip
+        sounds.add(new Sound("res/Sounds/Pling.wav")); //when collecting money
+        sounds.add(new Sound("res/Sounds/ZombieBite.wav")); //when zombies are attacking a plant
         gameContainer.setShowFPS(false);
 
     }
