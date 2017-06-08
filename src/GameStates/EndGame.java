@@ -5,6 +5,10 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import Setup.*;
+import Towers.*;
+import Zombies.*;
+
 /**
  * Created by Andrew on 6/6/2017.
  */

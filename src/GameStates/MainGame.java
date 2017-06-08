@@ -1,21 +1,16 @@
 package GameStates;
 
-import Setup.Mouse;
-import Setup.Projectile;
-import Setup.Shop;
-import Towers.MarkerLauncher;
-import Towers.MoneyTree;
-import Towers.Quiz;
-import Towers.Tower;
-import Zombies.Zombie;
 import org.newdawn.slick.*;
 import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-
 import java.util.ArrayList;
+
+import Towers.*;
+import Zombies.*;
+import Setup.*;
 
 /**
  * Created by Andrew on 6/6/2017.

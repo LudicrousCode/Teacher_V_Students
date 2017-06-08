@@ -4,6 +4,9 @@ import Setup.Projectile;
 import Setup.Sprite;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import GameStates.*;
+import Setup.*;
+import Zombies.*;
 
 import java.awt.*;
 

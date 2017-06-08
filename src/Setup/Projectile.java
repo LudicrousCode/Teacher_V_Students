@@ -3,6 +3,10 @@ package Setup;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import GameStates.*;
+import Towers.*;
+import Zombies.*;
+
 /**
  * Created by andrew_briasco on 6/2/17.
  */
