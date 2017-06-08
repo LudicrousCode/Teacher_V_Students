@@ -46,7 +46,12 @@ public class EndGame extends BasicGameState {
     }
 
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
+        Input a = gameContainer.getInput();
+        if (a.isMousePressed(0)) {
+            System.out.println("mouse clicked");
+            if (a.getMouseX() >= 525 && a.getMouseX() <= 675 && a.getMouseY() >= 600 && a.getMouseY() <= 650)
+                game.enterState(1);
+        }
     }
 
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {

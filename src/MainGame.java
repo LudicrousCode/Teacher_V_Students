@@ -43,6 +43,7 @@ public class MainGame extends BasicGameState {
         shop = new Shop(gameContainer);
         sounds = new ArrayList<Sound>();
         sounds.add(new Sound("res/Sounds/pop2.wav"));
+        gameContainer.setShowFPS(false);
 
     }
 

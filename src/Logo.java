@@ -32,9 +32,6 @@ public class Logo extends BasicGameState {
 
         graphics.drawRect(550, 725, 100, 50);
         graphics.drawString("PLAY", 581, 742);
-
-        graphics.drawRect(200, 725, 100, 50);
-        graphics.drawString("SHOP", 231, 742);
     }
 
     @Override
@@ -44,8 +41,6 @@ public class Logo extends BasicGameState {
             System.out.println("mouse clicked");
             if (a.getMouseX() >= 550 && a.getMouseX() <= 650 && a.getMouseY() >= 725 && a.getMouseY() <= 775)
                 game.enterState(1);
-//            if (a.getMouseX() >= 200 && a.getMouseX() <= 300 && a.getMouseY() >= 725 && a.getMouseY() <= 775)
-                //go to shop
         }
     }
 }
