@@ -7,8 +7,6 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
 import GameStates.*;
-import Towers.*;
-import Zombies.*;
 
 /**
  * Created by andrew_briasco on 5/8/17.
@@ -44,6 +42,7 @@ public class Main extends StateBasedGame {
         this.addState(new MainGame());//1
         this.addState(new EndGame());//2
         this.addState(new Logo());//3
+        this.addState(new Pause());//4
         gameContainer.setMinimumLogicUpdateInterval(20);
         gameContainer.setMaximumLogicUpdateInterval(20);
 //        this.enterState(0);

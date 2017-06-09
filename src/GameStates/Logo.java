@@ -1,12 +1,12 @@
-package Setup;
+package GameStates;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import GameStates.*;
 import Towers.*;
 import Zombies.*;
+import Towers.*;
 
 /**
  * Created by sarah_zhang on 6/7/17.

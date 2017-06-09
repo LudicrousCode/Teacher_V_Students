@@ -37,14 +37,14 @@ public class Title extends BasicGameState{
         graphics.fillRect(0, 0, 1200, 800);
         graphics.setColor(Color.white);
 
-        graphics.drawString("On a warm and sunny April Fools Day, Mr. Hopps decides to pull an epic prank on the students.", 100, 100);
+        graphics.drawString("On a warm and sunny April Fools' Day, Mr. Hopps decides to pull an epic prank on the students.", 100, 100);
         graphics.drawString("The only problem is, it's a Saturday, so there's no school. What should he do?", 100, 150);
         graphics.drawString("Hopps creates a computer virus that will spam all the student computers with comp sci memes.", 100, 200);
         graphics.drawString("The student computers are infected with the virus, which goes into effect soon after.", 100, 250);
         graphics.drawString("There are so many memes that most of the computers either crash, or the memes block all other windows.", 100, 300);
         graphics.drawString("The students are angry and confused, but when there are memes roasting the students they guess who did it.", 100, 350);
         graphics.drawString("On the next Monday morning, as Hopps walks to his classroom, he hears the students talking about the virus.", 100, 400);
-        graphics.drawString("One of them mentions that Hopps did it. They all turn to see Hopps, and begin chasing after him.", 100, 450);
+        graphics.drawString("One of them mentions that Hopps did it. They all turn to see Hopps and begin chasing after him.", 100, 450);
         graphics.drawString("Luckily, Hopps has enough of a headstart to blockade himself in his classroom before all the students attack him...", 100, 500);
 
         graphics.setColor(Color.blue);

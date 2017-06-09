@@ -101,6 +101,12 @@ public class MainGame extends BasicGameState {
         //render money
         graphics.setColor(Color.white);
         graphics.drawString("money: " + money, 10, 10);
+
+        //pause button
+        graphics.setColor(Color.blue);
+        graphics.setLineWidth(5);
+        graphics.drawRect(1120, 10, 60, 30);
+        graphics.drawString("MENU", 1132, 15);
     }
 
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
@@ -112,14 +118,20 @@ public class MainGame extends BasicGameState {
 
         if (input.isMousePressed(0)){
 
+            //check if clicked on falling money
             for (int j = 0; j < fm.size(); j++) {
                 FallingMoney f = fm.get(j);
-                if(input.getMouseX() >= f.getX() && input.getMouseX() <= f.getX()+100 && input.getMouseY() >= f.getY() && input.getMouseY() <= f.getY()+58){
+                if(input.getMouseX() >= f.getX() && input.getMouseX() <= f.getX()+f.getPic().getWidth() && input.getMouseY() >= f.getY() && input.getMouseY() <= f.getY()+f.getPic().getHeight()){
                     System.out.println("clicked on falling money");
                     money += 25;
                     fm.remove(j);
                     j--;
                 }
+            }
+
+            //check if clicked on menu button
+            if(input.getMouseX() >= 1120 && input.getMouseX() <= 1180 && input.getMouseY() >= 10 && input.getMouseY() <= 30) {
+                game.enterState(4);
             }
 
             //check if mouse is clicked on playing field
@@ -273,8 +285,13 @@ public class MainGame extends BasicGameState {
         }
 
         //falling money
-        for(FallingMoney f: fm){
+        for (int j = 0; j < fm.size(); j++) {
+            FallingMoney f = fm.get(j);
             f.move();
+            if(f.getX()+f.getPic().getHeight() >= 700){
+                fm.remove(j);
+                j--;
+            }
         }
 
     }
@@ -314,6 +331,7 @@ public class MainGame extends BasicGameState {
         plants = new Tower[6][10];
         zombies.clear();
         projectiles.clear();
+        money = 50;
     }
 
 
