@@ -23,6 +23,7 @@ public class MainGame extends BasicGameState {
     private Image background;
     private Tower[][] plants;
     private Tower[] towers;
+    private ArrayList<FallingMoney> fm;
     private ArrayList<Zombie> zombies;
     private ArrayList<Projectile> projectiles;
     private ArrayList<Sound> sounds;
@@ -51,6 +52,7 @@ public class MainGame extends BasicGameState {
         sounds.add(new Sound("res/Sounds/ZombieDeath.wav")); //when a zombie dies
         gameContainer.setShowFPS(false);
         towers = new Tower[10];
+        fm = new ArrayList<>();
     }
 
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
@@ -90,20 +92,36 @@ public class MainGame extends BasicGameState {
                 graphics.drawString(towers[i-1].getPrice() + "", i*100+65, 705);
         }
 
+        //render falling money
+        for(FallingMoney f: fm) {
+            graphics.drawImage(new Image("res/money.png"), f.getX(), f.getY());
+        }
+
+
         //render money
         graphics.setColor(Color.white);
-        graphics.drawString("money: " + money, 10, 30);
+        graphics.drawString("money: " + money, 10, 10);
     }
 
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         Input input = gameContainer.getInput();
 
         GameTime++;
-
+        genFallingMoney();
         genZombies();
 
         if (input.isMousePressed(0)){
-            System.out.println(input.getMouseX() + ", " + input.getMouseY());
+
+            for (int j = 0; j < fm.size(); j++) {
+                FallingMoney f = fm.get(j);
+                if(input.getMouseX() >= f.getX() && input.getMouseX() <= f.getX()+100 && input.getMouseY() >= f.getY() && input.getMouseY() <= f.getY()+58){
+                    System.out.println("clicked on falling money");
+                    money += 25;
+                    fm.remove(j);
+                    j--;
+                }
+            }
+
             //check if mouse is clicked on playing field
             if (input.getMouseX()>100 && input.getMouseX()<1200 && input.getMouseY()>100 && input.getMouseY()<700){
                 System.out.println("mouse on playing field");
@@ -188,7 +206,7 @@ public class MainGame extends BasicGameState {
          * move the projectiles
          *
          */
-        for (Projectile a:projectiles) {
+        for (Projectile a: projectiles) {
             a.move();
         }
 
@@ -253,11 +271,22 @@ public class MainGame extends BasicGameState {
             else
                 z.move();
         }
+
+        //falling money
+        for(FallingMoney f: fm){
+            f.move();
+        }
+
     }
 
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         System.out.println("Entered MainGame State");
 //        genZombies();
+    }
+
+    public void genFallingMoney() throws SlickException{
+        if(GameTime % 200 == 0)
+            fm.add(new FallingMoney((int)(Math.random()*1100), 0, 2));
     }
 
     public void genZombies() throws SlickException{
