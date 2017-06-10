@@ -57,11 +57,11 @@ public class Pause extends BasicGameState{
         Input a = gameContainer.getInput();
         if (a.isMousePressed(0)) {
             //back to game
-            if (a.getMouseX() >= 380 && a.getMouseX() <= 550 && a.getMouseY() >= 170 && a.getMouseY() <= 210)
-                game.enterState(1);
+            if (a.getMouseX() >= 380 && a.getMouseX() <= 550 && a.getMouseY() >= 450 && a.getMouseY() <= 490)
+                game.enterState(1); //TODO don't reset everything when you leave MainGame state
             if(a.getMouseX() >= 380 && a.getMouseX() <= 550 && a.getMouseY() >= 525 && a.getMouseY() <= 565)
                 game.enterState(3);
-            if(a.getMouseX() >= 650 && a.getMouseX() <= 820 && a.getMouseY() >= 170 && a.getMouseY() <= 210)
+            if(a.getMouseX() >= 650 && a.getMouseX() <= 820 && a.getMouseY() >= 450 && a.getMouseY() <= 490)
                 game.enterState(1);
         }
     }
