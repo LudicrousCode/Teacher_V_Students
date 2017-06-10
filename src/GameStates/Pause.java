@@ -14,6 +14,7 @@ import Towers.*;
 public class Pause extends BasicGameState{
     public static final int ID = 4;
     private StateBasedGame game;
+    private int x;
 
 
     @Override
@@ -24,6 +25,7 @@ public class Pause extends BasicGameState{
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.game = stateBasedGame;
+        x = 764;
     }
 
     @Override
@@ -34,16 +36,23 @@ public class Pause extends BasicGameState{
         graphics.fillRect(300, 200, 600, 400);
         graphics.drawImage(new Image("res/Menu/options.png"), 505, 210);
         graphics.drawImage(new Image("res/Menu/music_volume.png"), 350, 280);
-        graphics.drawImage(new Image("res/Menu/sound_fx.png"), 350, 337);
+        graphics.drawImage(new Image("res/Menu/sound_fx.png"), 410, 337);
 
+        //sound fx and music volume
         graphics.setColor(Color.green);
         graphics.setLineWidth(5);
         graphics.drawRect(300, 200, 600, 400);
+        graphics.drawLine(574, 308, 774, 308);
+        graphics.drawLine(574, 360, 774, 360);
+
+        graphics.drawImage(new Image("res/Menu/volume_button.png"), 764, 298);
+        graphics.drawImage(new Image("res/Menu/volume_button.png"), 764, 350);
 
         graphics.drawImage(new Image("res/Menu/back_to_game.png"), 382, 450);
         graphics.drawImage(new Image("res/Menu/restart_level.png"), 656, 450);
         graphics.drawImage(new Image("res/Menu/main_menu.png"), 405, 525);
 
+        //buttons
         graphics.setColor(Color.blue);
         graphics.setLineWidth(3);
         graphics.drawRect(380, 450, 170, 40);
@@ -63,6 +72,9 @@ public class Pause extends BasicGameState{
                 game.enterState(3);
             if(a.getMouseX() >= 650 && a.getMouseX() <= 820 && a.getMouseY() >= 450 && a.getMouseY() <= 490)
                 game.enterState(1);
+
+            //volume button
+
         }
     }
 
