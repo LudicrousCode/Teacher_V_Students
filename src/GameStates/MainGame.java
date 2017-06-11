@@ -320,6 +320,7 @@ public class MainGame extends BasicGameState {
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         System.out.println("Left MainGame");
         GameTime = 0;
+        money = 50;
 //        for (int i = 0; i < plants.length; i++) {
 //            for (int j = 0; j < plants[i].length; j++) {
 //                if(plants[i][j] != null) {
