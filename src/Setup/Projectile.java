@@ -7,6 +7,8 @@ import GameStates.*;
 import Towers.*;
 import Zombies.*;
 
+import java.awt.*;
+
 /**
  * Created by andrew_briasco on 6/2/17.
  */
@@ -21,6 +23,7 @@ public class Projectile extends Sprite {
         this.setPic(pic);
         speed = s;
         this.pic = pic;
+        this.damage = damage;
 
     }
 
@@ -30,6 +33,7 @@ public class Projectile extends Sprite {
 
     public void move(){
         this.setX(this.getX()+speed);
+        resetBoundRect(new Rectangle(getX()*100+100, getY()*100+100, getPic().getWidth(), getPic().getHeight()));
     }
     public Image getImage (){
         return pic;

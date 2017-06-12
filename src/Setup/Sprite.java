@@ -36,11 +36,15 @@ public class Sprite {
     }
 
     public boolean isHit(Sprite other){
-        if (this.getBounds().intersects(other.getBounds()))
+
+        if (getBounds().intersects(other.getBounds())) {
             System.out.println("true intersect");
-        if (!this.getBounds().intersects(other.getBounds()))
+        }
+        if ( !(getBounds().intersects(other.getBounds())) ) {
             System.out.println("false intersect");
-        return this.getBounds().intersects(other.getBounds());
+        }
+        return getBounds().intersects(other.getBounds());
+
     }
 
     public int getX() {
@@ -60,5 +64,7 @@ public class Sprite {
     }
 
     public Image getPic(){ return pic; }
+
+    public void resetBoundRect(Rectangle r){ boundRect = r; }
 
 }

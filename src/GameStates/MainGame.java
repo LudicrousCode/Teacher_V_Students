@@ -237,6 +237,7 @@ public class MainGame extends BasicGameState {
             for(int m = 0; m < projectiles.size(); m++){
 
                 if(z.isHit(projectiles.get(m))){ //check for collisions with any projectiles
+                    System.out.println("z hit by projectile");
                     z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
                     projectiles.remove(m); //remove projectile from projectile list
 
@@ -246,11 +247,13 @@ public class MainGame extends BasicGameState {
                         zombies.remove(z);
                     }
                     if(projectiles.get(m).getX() > 1200)
+                        System.out.println("projectile removed");
                         projectiles.remove(m);
                 }
             }
             if(z.getX()/100-1 >-1 && z.getX()<1100) {
                 if (plants[z.getY() / 100 - 1][z.getX() / 100 - 1] != null) { //if square is occupied
+                    System.out.println("z in occupied square");
 
                     Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
                     p.takeDamage(z.getDamage()); //do damage
@@ -308,7 +311,7 @@ public class MainGame extends BasicGameState {
 
     public void genZombies() throws SlickException{
         if(GameTime % 200 == 0) {
-            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/drew.png"), 2, 100, 2));
+            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/drew.png"), 2, 50, 2));
         }
         if(GameTime == 2500){
             //spawn zombie boss characterized to each level
