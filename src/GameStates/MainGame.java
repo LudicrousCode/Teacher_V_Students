@@ -51,13 +51,10 @@ public class MainGame extends BasicGameState {
         sounds.add(new Sound("res/Sounds/ZombieBite.wav")); //when zombies are attacking a plant
         sounds.add(new Sound("res/Sounds/ZombieDeath.wav")); //when a zombie dies
         sounds.add(new Sound("res/Sounds/zombiesOnYourLawn.wav"));
-        sounds.add(new Sound("zombotany.wav"));
+        sounds.add(new Sound("res/Sounds/zombotany.wav"));
         gameContainer.setShowFPS(false);
         towers = new Tower[10];
         fm = new ArrayList<>();
-
-
-
     }
 
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
@@ -117,7 +114,7 @@ public class MainGame extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         Input input = gameContainer.getInput();
 
-//        sounds.get(5).play();
+        sounds.get(3).play();
 
         GameTime++;
         genFallingMoney();
