@@ -318,7 +318,8 @@ public class MainGame extends BasicGameState {
 
     public void genZombies() throws SlickException{
         if(GameTime % 200 == 0) {
-            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/drew.png"), 1, 100, 2));
+            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/zombies/drew.png"), 1, 100, 2));
+            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/zombies/cafZombie.png"), 1, 100, 2));
         }
         if(GameTime == 2500){
             //spawn zombie boss characterized to each level
