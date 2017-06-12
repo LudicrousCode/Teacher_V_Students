@@ -14,8 +14,6 @@ import Towers.*;
 public class Pause extends BasicGameState{
     public static final int ID = 4;
     private StateBasedGame game;
-    private int x;
-
 
     @Override
     public int getID() {
@@ -25,7 +23,6 @@ public class Pause extends BasicGameState{
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.game = stateBasedGame;
-        x = 764;
     }
 
     @Override
@@ -42,11 +39,19 @@ public class Pause extends BasicGameState{
         graphics.setColor(Color.green);
         graphics.setLineWidth(5);
         graphics.drawRect(300, 200, 600, 400);
-        graphics.drawLine(574, 308, 774, 308);
-        graphics.drawLine(574, 360, 774, 360);
 
-        graphics.drawImage(new Image("res/Menu/volume_button.png"), 764, 298);
-        graphics.drawImage(new Image("res/Menu/volume_button.png"), 764, 350);
+        graphics.setColor(Color.darkGray);
+        graphics.fillOval(554, 300, 20, 20);
+        graphics.fillOval(584, 300, 20, 20);
+        graphics.fillOval(554, 350, 20, 20);
+        graphics.fillOval(584, 350, 20, 20);
+
+        graphics.setColor(Color.green);
+        graphics.drawString("+", 559, 301);
+        graphics.drawString("-", 589, 301);
+        graphics.drawString("+", 559, 351);
+        graphics.drawString("-", 589, 351);
+
 
         graphics.drawImage(new Image("res/Menu/back_to_game.png"), 382, 450);
         graphics.drawImage(new Image("res/Menu/restart_level.png"), 656, 450);
@@ -74,6 +79,12 @@ public class Pause extends BasicGameState{
                 game.enterState(1);
 
             //volume button
+            a.initControllers();
+            if(a.isButton1Pressed(0)){
+                if(a.getMouseX() < 774){
+
+                }
+            }
 
         }
     }
