@@ -37,12 +37,12 @@ public class Sprite {
 
     public boolean isHit(Sprite other){
 
-        if (getBounds().intersects(other.getBounds())) {
-            System.out.println("true intersect");
-        }
-        if ( !(getBounds().intersects(other.getBounds())) ) {
-            System.out.println("false intersect");
-        }
+//        if (getBounds().intersects(other.getBounds())) {
+//            System.out.println("true intersect");
+//        }
+//        if ( !(getBounds().intersects(other.getBounds())) ) {
+//            System.out.println("false intersect");
+//        }
         return getBounds().intersects(other.getBounds());
 
     }
