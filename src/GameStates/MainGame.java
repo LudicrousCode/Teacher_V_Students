@@ -52,6 +52,8 @@ public class MainGame extends BasicGameState {
         sounds.add(new Sound("res/Sounds/ZombieDeath.wav")); //when a zombie dies
 //        sounds.add(new Sound("res/Sounds/zombiesOnYourLawn.wav"));
 //        sounds.add(new Sound("res/Sounds/zombotany.wav"));
+        sounds.add(new Sound("res/Sounds/zombiesOnYourLawn1.wav")); //when you win
+        sounds.add(new Sound("res/Sounds/zombotany1.wav")); //playing the game
         gameContainer.setShowFPS(false);
         towers = new Tower[10];
         fm = new ArrayList<>();
@@ -114,7 +116,7 @@ public class MainGame extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         Input input = gameContainer.getInput();
 
-//        sounds.get(3).play();
+        sounds.get(3).play();
 
         GameTime++;
         genFallingMoney();
@@ -244,23 +246,20 @@ public class MainGame extends BasicGameState {
                     System.out.println("z hit by projectile");
                     z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
                     projectiles.remove(m); //remove projectile from projectile list
-                    m--;
 
                     //check if z is dead-dead (dead for the second time)
                     if(z.dead()){
                         sounds.get(3).play();
                         zombies.remove(z);
                     }
-                }
-                else if(projectiles.size() > 0 && projectiles.get(m).getX() > 1200) {
-                    System.out.println("projectile removed");
-                    projectiles.remove(m);
-                    m--;
+                    if(projectiles.get(m).getX() > 1200)
+                        System.out.println("projectile removed");
+                        projectiles.remove(m);
                 }
             }
             if(z.getX()/100-1 >-1 && z.getX()<1100) {
                 if (plants[z.getY() / 100 - 1][z.getX() / 100 - 1] != null) { //if square is occupied
-//                    System.out.println("z in occupied square");
+                    System.out.println("z in occupied square");
 
                     Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
                     p.takeDamage(z.getDamage()); //do damage
@@ -318,8 +317,7 @@ public class MainGame extends BasicGameState {
 
     public void genZombies() throws SlickException{
         if(GameTime % 200 == 0) {
-            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/zombies/drew.png"), 1, 100, 2));
-            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/zombies/cafZombie.png"), 1, 100, 2));
+            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/drew.png"), 2, 50, 2));
         }
         if(GameTime == 2500){
             //spawn zombie boss characterized to each level
