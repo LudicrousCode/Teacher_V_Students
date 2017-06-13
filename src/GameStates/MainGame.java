@@ -50,13 +50,14 @@ public class MainGame extends BasicGameState {
         sounds.add(new Sound("res/Sounds/Pling.wav")); //when collecting money
         sounds.add(new Sound("res/Sounds/ZombieBite.wav")); //when zombies are attacking a plant
         sounds.add(new Sound("res/Sounds/ZombieDeath.wav")); //when a zombie dies
-//        sounds.add(new Sound("res/Sounds/zombiesOnYourLawn.wav"));
-//        sounds.add(new Sound("res/Sounds/zombotany.wav"));
         sounds.add(new Sound("res/Sounds/zombiesOnYourLawn1.wav")); //when you win
         sounds.add(new Sound("res/Sounds/zombotany1.wav")); //playing the game
         gameContainer.setShowFPS(false);
         towers = new Tower[10];
         fm = new ArrayList<>();
+
+        sounds.get(5).play();
+
     }
 
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
@@ -115,8 +116,6 @@ public class MainGame extends BasicGameState {
 
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         Input input = gameContainer.getInput();
-
-        sounds.get(3).play();
 
         GameTime++;
         genFallingMoney();
@@ -252,9 +251,10 @@ public class MainGame extends BasicGameState {
                         sounds.get(3).play();
                         zombies.remove(z);
                     }
-                    if(projectiles.get(m).getX() > 1200)
-                        System.out.println("projectile removed");
-                        projectiles.remove(m);
+                }
+                else if(projectiles.get(m).getX() > 1200) {
+                    System.out.println("projectile removed");
+                    projectiles.remove(m);
                 }
             }
             if(z.getX()/100-1 >-1 && z.getX()<1100) {
@@ -317,7 +317,7 @@ public class MainGame extends BasicGameState {
 
     public void genZombies() throws SlickException{
         if(GameTime % 200 == 0) {
-            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/drew.png"), 2, 50, 2));
+            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/zombies/drew.png"), 2, 50, 2));
         }
         if(GameTime == 2500){
             //spawn zombie boss characterized to each level
