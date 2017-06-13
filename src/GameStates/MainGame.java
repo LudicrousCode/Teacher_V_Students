@@ -28,7 +28,7 @@ public class MainGame extends BasicGameState {
     private ArrayList<Projectile> projectiles;
     private ArrayList<Sound> sounds;
     private Shop shop;
-    private int money;
+    private int money, dCount;
     private Mouse mouse;
     private int GameTime = 0;
     private boolean enterPause;
@@ -41,11 +41,14 @@ public class MainGame extends BasicGameState {
         this.game = stateBasedGame;
         background = new Image("res/floor.png");
         money = 50;
+        dCount = 0;
+
         plants = new Tower[6][10];
         zombies = new ArrayList<Zombie>();
         projectiles = new ArrayList<Projectile>();
         mouse = new Mouse();
         shop = new Shop(gameContainer);
+
         sounds = new ArrayList<Sound>();
         sounds.add(new Sound("res/Sounds/pop2.wav")); //clicking an item in the shop
         sounds.add(new Sound("res/Sounds/Pling.wav")); //when collecting money
@@ -119,6 +122,7 @@ public class MainGame extends BasicGameState {
         Input input = gameContainer.getInput();
 
         GameTime++;
+        dCount++;
         genFallingMoney();
         genZombies();
 
@@ -129,7 +133,7 @@ public class MainGame extends BasicGameState {
                 FallingMoney f = fm.get(j);
                 if(input.getMouseX() >= f.getX() && input.getMouseX() <= f.getX()+f.getPic().getWidth() && input.getMouseY() >= f.getY() && input.getMouseY() <= f.getY()+f.getPic().getHeight()){
                     System.out.println("clicked on falling money");
-                    money += 25;
+                    money += 5;
                     fm.remove(j);
                     j--;
                 }
@@ -242,10 +246,12 @@ public class MainGame extends BasicGameState {
             Zombie z = zombies.get(l);
 
             for(int m = 0; m < projectiles.size(); m++){
-                if(projectiles.get(m).getX() > z.getX()-80 && projectiles.get(m).getX() < z.getX()+180){
+                if(projectiles.get(m).getX() > z.getX()-80 && projectiles.get(m).getX() < z.getX()+180
+                    && projectiles.get(m).getY() == z.getY() && !(projectiles.get(m).getX() > 1100)){
                     System.out.println("z hit by projectile");
                     z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
                     projectiles.remove(m); //remove projectile from projectile list
+                    m--;
                 }
 
 //                if(z.isHit(projectiles.get(m))){ //check for collisions with any projectiles
@@ -259,23 +265,26 @@ public class MainGame extends BasicGameState {
                         zombies.remove(z);
                     }
 //                }
-                else if(projectiles.get(m).getX() > 1200) {
+                else if(projectiles.size() > 0 && projectiles.get(m).getX() > 1200) {
                     System.out.println("projectile removed");
                     projectiles.remove(m);
+                    m--;
                 }
             }
             if(z.getX()/100-1 >-1 && z.getX()<1100) {
                 if (plants[z.getY() / 100 - 1][z.getX() / 100 - 1] != null) { //if square is occupied
                     System.out.println("z in occupied square");
 
-                    Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
-                    p.takeDamage(z.getDamage()); //do damage
-                    if(z.bite())
-                        sounds.get(2).play();
+                    if(dCount % 50 == 0) {
+                        Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
+                        p.takeDamage(z.getDamage()); //do damage
+                        if (z.bite())
+                            sounds.get(2).play();
 
-                    //check if plant is dead
-                    if (p.getHealth() <= 0) {
-                        plants[z.getY() / 100 - 1][z.getX() / 100 - 1] = null; //remove
+                        //check if plant is dead
+                        if (p.getHealth() <= 0) {
+                            plants[z.getY() / 100 - 1][z.getX() / 100 - 1] = null; //remove
+                        }
                     }
                 } else {
                     z.move(); //if nothing in the way, move forward
@@ -325,8 +334,14 @@ public class MainGame extends BasicGameState {
     }
 
     public void genZombies() throws SlickException{
-        if(GameTime % 200 == 0) {
-            zombies.add(new Zombie(1200, (int)((Math.random()*6) + 1)*100, new Image("res/zombies/drew.png"), 2, 50, 2));
+        if(GameTime > 500 && GameTime % 200 == 0) {
+            int rand = (int)(Math.random()*100);
+            if(rand < 50) {
+                zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
+            }
+            else{
+                zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
+            }
         }
         if(GameTime == 2500){
             //spawn zombie boss characterized to each level
