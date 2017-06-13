@@ -263,6 +263,9 @@ public class MainGame extends BasicGameState {
                     if(z.dead()){
                         sounds.get(3).play();
                         zombies.remove(z);
+
+                        if(z.getPic().equals(new Image("res/zombies/drew.png")))
+                            game.enterState(5);
                     }
 //                }
                 else if(projectiles.size() > 0 && projectiles.get(m).getX() > 1200) {

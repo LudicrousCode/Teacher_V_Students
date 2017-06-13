@@ -1,8 +1,6 @@
 package GameStates;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -13,6 +11,7 @@ public class Win extends BasicGameState{
 
     public static final int ID = 5;
     private StateBasedGame game;
+    private Sound win;
 
     @Override
     public int getID() {
@@ -22,11 +21,19 @@ public class Win extends BasicGameState{
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.game = stateBasedGame;
+        win = new Sound("res/Sounds/zombiesOnYourLawn1.wav");
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
+        graphics.setColor(Color.black);
+        graphics.drawRect(0, 0, 1200, 800);
+        graphics.drawImage(new Image("res/you_win.png"), 480, 200);
+        win.play();
+        graphics.drawImage(new Image("res/Menu/main_menu.png"), 539, 400);
+        graphics.setColor(Color.blue);
+        graphics.setLineWidth(3);
+        graphics.drawRect(539, 400, 123, 40);
     }
 
     @Override
