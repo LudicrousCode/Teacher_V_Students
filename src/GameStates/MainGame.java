@@ -59,9 +59,6 @@ public class MainGame extends BasicGameState {
         gameContainer.setShowFPS(false);
         towers = new Tower[10];
         fm = new ArrayList<>();
-
-        sounds.get(5).play();
-
     }
 
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
@@ -329,6 +326,8 @@ public class MainGame extends BasicGameState {
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         System.out.println("Entered MainGame State");
         enterPause = false;
+        sounds.get(5).play();
+
 //        genZombies();
     }
 
@@ -359,6 +358,7 @@ public class MainGame extends BasicGameState {
             System.out.println("Left MainGame");
             GameTime = 0;
             fm.clear();
+            sounds.get(5).stop();
 
 //        for (int i = 0; i < plants.length; i++) {
 //            for (int j = 0; j < plants[i].length; j++) {
