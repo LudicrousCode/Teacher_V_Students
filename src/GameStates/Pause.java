@@ -14,6 +14,7 @@ import Towers.*;
 public class Pause extends BasicGameState{
     public static final int ID = 4;
     private StateBasedGame game;
+    private String volume, sound;
 
     @Override
     public int getID() {
@@ -23,6 +24,8 @@ public class Pause extends BasicGameState{
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.game = stateBasedGame;
+        volume = "ON";
+        sound = "ON";
     }
 
     @Override
@@ -41,16 +44,12 @@ public class Pause extends BasicGameState{
         graphics.drawRect(300, 200, 600, 400);
 
         graphics.setColor(Color.darkGray);
-        graphics.fillOval(554, 300, 20, 20);
-        graphics.fillOval(584, 300, 20, 20);
-        graphics.fillOval(554, 350, 20, 20);
-        graphics.fillOval(584, 350, 20, 20);
+        graphics.fillRect(554, 300, 40, 20);
+        graphics.fillRect(554, 350, 40, 20);
 
         graphics.setColor(Color.green);
-        graphics.drawString("+", 559, 301);
-        graphics.drawString("-", 589, 301);
-        graphics.drawString("+", 559, 351);
-        graphics.drawString("-", 589, 351);
+        graphics.drawString(volume, 559, 301);
+        graphics.drawString(sound, 559, 351);
 
 
         graphics.drawImage(new Image("res/Menu/back_to_game.png"), 382, 450);
@@ -72,13 +71,30 @@ public class Pause extends BasicGameState{
         if (a.isMousePressed(0)) {
             //back to game
             if (a.getMouseX() >= 380 && a.getMouseX() <= 550 && a.getMouseY() >= 450 && a.getMouseY() <= 490)
-                game.enterState(1); //TODO don't reset everything when you leave MainGame state
+                game.enterState(1);
             if(a.getMouseX() >= 380 && a.getMouseX() <= 550 && a.getMouseY() >= 525 && a.getMouseY() <= 565)
                 game.enterState(3);
             if(a.getMouseX() >= 650 && a.getMouseX() <= 820 && a.getMouseY() >= 450 && a.getMouseY() <= 490)
                 game.enterState(1);
 
-
+            if(a.getMouseX() >= 554 && a.getMouseX() <= 594){
+                if(a.getMouseY() >= 300 & a.getMouseY() <= 320){
+                    if(volume.equals("ON")){
+                        volume = "OFF";
+                    }
+                    else {
+                        volume = "ON";
+                    }
+                }
+                if(a.getMouseY() >= 350 && a.getMouseY() <= 370){
+                    if(volume.equals("ON")){
+                        volume = "OFF";
+                    }
+                    else {
+                        volume = "ON";
+                    }
+                }
+            }
         }
     }
 
