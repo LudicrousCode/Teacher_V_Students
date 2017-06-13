@@ -78,15 +78,16 @@ public class Pause extends BasicGameState{
             if(a.getMouseX() >= 650 && a.getMouseX() <= 820 && a.getMouseY() >= 450 && a.getMouseY() <= 490)
                 game.enterState(1);
 
-            //volume button
-            a.initControllers();
-            if(a.isButton1Pressed(0)){
-                if(a.getMouseX() < 774){
-
-                }
-            }
 
         }
     }
 
+    public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        System.out.println("Entered Pause State");
+//        genZombies();
+    }
+
+    public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException{
+        System.out.println("Left Pause State");
+    }
 }

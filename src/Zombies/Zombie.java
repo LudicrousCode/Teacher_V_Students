@@ -17,7 +17,7 @@ public class Zombie extends Sprite {
      * Base class for all students / enemies
      */
 
-    private int speed, HP, damage;
+    private int speed, HP, damage, sBite;
 
     public Zombie(int x, int y, Image pic, int speed, int HP, int damage) throws SlickException {
         super(x, y);
@@ -52,6 +52,15 @@ public class Zombie extends Sprite {
 
     public void getSlower(int s){ speed -= s;}
 
+    public boolean bite(){
+        if(sBite == 0) {
+            sBite = 40;
+            return true;
+        }
+        else
+            sBite --;
+        return false;
 
     }
+}
 

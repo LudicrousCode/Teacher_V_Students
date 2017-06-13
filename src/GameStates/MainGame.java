@@ -31,6 +31,7 @@ public class MainGame extends BasicGameState {
     private int money;
     private Mouse mouse;
     private int GameTime = 0;
+    private boolean enterPause;
 
     public int getID() {
         return ID;
@@ -136,6 +137,7 @@ public class MainGame extends BasicGameState {
 
             //check if clicked on menu button
             if(input.getMouseX() >= 1120 && input.getMouseX() <= 1180 && input.getMouseY() >= 10 && input.getMouseY() <= 30) {
+                enterPause = true;
                 game.enterState(4);
             }
 
@@ -240,18 +242,23 @@ public class MainGame extends BasicGameState {
             Zombie z = zombies.get(l);
 
             for(int m = 0; m < projectiles.size(); m++){
-
-                if(z.isHit(projectiles.get(m))){ //check for collisions with any projectiles
+                if(projectiles.get(m).getX() > z.getX()-80 && projectiles.get(m).getX() < z.getX()+180){
                     System.out.println("z hit by projectile");
                     z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
                     projectiles.remove(m); //remove projectile from projectile list
+                }
+
+//                if(z.isHit(projectiles.get(m))){ //check for collisions with any projectiles
+//                    System.out.println("z hit by projectile");
+//                    z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
+//                    projectiles.remove(m); //remove projectile from projectile list
 
                     //check if z is dead-dead (dead for the second time)
                     if(z.dead()){
                         sounds.get(3).play();
                         zombies.remove(z);
                     }
-                }
+//                }
                 else if(projectiles.get(m).getX() > 1200) {
                     System.out.println("projectile removed");
                     projectiles.remove(m);
@@ -263,7 +270,8 @@ public class MainGame extends BasicGameState {
 
                     Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
                     p.takeDamage(z.getDamage()); //do damage
-                    sounds.get(2).play();
+                    if(z.bite())
+                        sounds.get(2).play();
 
                     //check if plant is dead
                     if (p.getHealth() <= 0) {
@@ -307,6 +315,7 @@ public class MainGame extends BasicGameState {
 
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         System.out.println("Entered MainGame State");
+        enterPause = false;
 //        genZombies();
     }
 
@@ -327,9 +336,11 @@ public class MainGame extends BasicGameState {
     }
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        System.out.println("Left MainGame");
-        GameTime = 0;
-        money = 50;
+        if(!enterPause) {
+            System.out.println("Left MainGame");
+            GameTime = 0;
+            fm.clear();
+
 //        for (int i = 0; i < plants.length; i++) {
 //            for (int j = 0; j < plants[i].length; j++) {
 //                if(plants[i][j] != null) {
@@ -338,10 +349,11 @@ public class MainGame extends BasicGameState {
 //                }
 //            }
 //        }
-        plants = new Tower[6][10];
-        zombies.clear();
-        projectiles.clear();
-        money = 50;
+            plants = new Tower[6][10];
+            zombies.clear();
+            projectiles.clear();
+            money = 50;
+        }
     }
 
 
