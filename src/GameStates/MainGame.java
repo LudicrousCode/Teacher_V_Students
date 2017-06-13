@@ -91,8 +91,8 @@ public class MainGame extends BasicGameState {
         for (MouseOverArea a : shop.getShop()) {
             a.render(gameContainer, graphics);
         }
-        towers[0] = new MoneyTree(100, 700);
-        towers[1] = new MarkerLauncher(200, 700);
+//        towers[0] = new MoneyTree(100, 700);
+//        towers[1] = new MarkerLauncher(200, 700);
         for (int i = 1; i < 11; i++) {
             graphics.setColor(Color.white);
             graphics.drawRect(i*100, 700, 100, 100);
@@ -254,6 +254,12 @@ public class MainGame extends BasicGameState {
                     m--;
                 }
 
+                else if(projectiles.size() > 0 && projectiles.get(m).getX() > 1100) {
+                    System.out.println("projectile removed");
+                    projectiles.remove(m);
+                    m--;
+                }
+
 //                if(z.isHit(projectiles.get(m))){ //check for collisions with any projectiles
 //                    System.out.println("z hit by projectile");
 //                    z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
@@ -268,11 +274,6 @@ public class MainGame extends BasicGameState {
                             game.enterState(5);
                     }
 //                }
-                else if(projectiles.size() > 0 && projectiles.get(m).getX() > 1200) {
-                    System.out.println("projectile removed");
-                    projectiles.remove(m);
-                    m--;
-                }
             }
             if(z.getX()/100-1 >-1 && z.getX()<1100) {
                 if (plants[z.getY() / 100 - 1][z.getX() / 100 - 1] != null) { //if square is occupied

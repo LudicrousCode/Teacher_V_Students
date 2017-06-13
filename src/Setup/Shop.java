@@ -19,8 +19,8 @@ public class Shop{
 
     public Shop(GameContainer c)throws SlickException{
         shop = new ArrayList<MouseOverArea>();
-        shop.add(new MouseOverArea(c, new Image("res/blank.png"), 100, 700, 100, 100));
-        shop.add(new MouseOverArea(c, new Image("res/blank.png"), 200, 700, 100, 100));
+        shop.add(new MouseOverArea(c, new Image("res/tower/moneyTree.png"), 100, 700, 100, 100));
+        shop.add(new MouseOverArea(c, new Image("res/tower/markerLauncher.png"), 200, 700, 100, 100));
         shop.add(new MouseOverArea(c, new Image("res/blank.png"), 300, 700, 100, 100));
         shop.add(new MouseOverArea(c, new Image("res/blank.png"), 400, 700, 100, 100));
         shop.add(new MouseOverArea(c, new Image("res/blank.png"), 500, 700, 100, 100));
