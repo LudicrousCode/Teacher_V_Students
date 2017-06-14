@@ -49,7 +49,7 @@ public class MainGame extends BasicGameState {
         money = 50;
         dCount = 0;
 
-        markerLauncherPrice = 50;
+        markerLauncherPrice = 40;
         moneyTreePrice = 20;
         quizTowerPrice = 30;
         fallingMoneyVal = 20;
