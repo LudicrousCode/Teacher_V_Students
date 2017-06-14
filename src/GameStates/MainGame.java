@@ -340,7 +340,6 @@ public class MainGame extends BasicGameState {
         System.out.println("Entered MainGame State");
         enterPause = false;
         sounds.get(5).loop();
-        sounds.get(5).play();
 
 //        genZombies();
     }
@@ -386,6 +385,7 @@ public class MainGame extends BasicGameState {
             projectiles.clear();
             money = 50;
         }
+        sounds.get(5).stop();
     }
 
 
