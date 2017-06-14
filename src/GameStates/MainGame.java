@@ -124,6 +124,7 @@ public class MainGame extends BasicGameState {
         Input input = gameContainer.getInput();
 
         GameTime++;
+        dCount++;
         genFallingMoney();
         genZombies();
 
@@ -289,7 +290,7 @@ public class MainGame extends BasicGameState {
                 if (plants[z.getY() / 100 - 1][z.getX() / 100 - 1] != null) { //if square is occupied
                     System.out.println("z in occupied square");
 
-                    if(dCount % 50 == 0) {
+                    if(dCount % 35 == 0) {
                         Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
                         p.takeDamage(z.getDamage()); //do damage
                         if (z.bite())
