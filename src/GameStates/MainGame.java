@@ -143,6 +143,14 @@ public class MainGame extends BasicGameState {
         genFallingMoney();
         genZombies();
 
+        for (int j = 0; j < fm.size(); j++) {
+            FallingMoney f = fm.get(j);
+            if(f.getY() >= 700){
+                fm.remove(j);
+                j--;
+            }
+        }
+
         if (input.isMousePressed(0)){
 
             //check if clicked on falling money
