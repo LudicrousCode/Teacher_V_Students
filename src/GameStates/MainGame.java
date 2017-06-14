@@ -222,7 +222,7 @@ public class MainGame extends BasicGameState {
                 }
                 if (p != null && p instanceof MoneyTree && ((MoneyTree) p).genMoney()){
                     sounds.get(1).play();
-                    money += 30;
+                    money += 10;
                 }
             }
         }
