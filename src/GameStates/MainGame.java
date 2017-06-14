@@ -107,6 +107,7 @@ public class MainGame extends BasicGameState {
         }
         towers[0] = new MoneyTree(100, 700);
         towers[1] = new MarkerLauncher(200, 700);
+        towers[2] = new Quiz(300, 700);
         for (int i = 1; i < 11; i++) {
             graphics.setColor(Color.white);
             graphics.drawRect(i*100, 700, 100, 100);
