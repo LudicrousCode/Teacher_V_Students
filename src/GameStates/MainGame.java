@@ -56,9 +56,14 @@ public class MainGame extends BasicGameState {
         sounds.add(new Sound("res/Sounds/ZombieDeath.wav")); //when a zombie dies
         sounds.add(new Sound("res/Sounds/zombiesOnYourLawn1.wav")); //when you win
         sounds.add(new Sound("res/Sounds/zombotany1.wav")); //playing the game
+        sounds.add(new Sound("res/Sounds/ZombieDies1.wav")); //when a zombie dies
+        sounds.add(new Sound("res/Sounds/ZombieDies2.wav")); //when a zombie dies
         gameContainer.setShowFPS(false);
         towers = new Tower[10];
         fm = new ArrayList<>();
+
+//        sounds.get(5).play();
+
     }
 
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
@@ -88,8 +93,8 @@ public class MainGame extends BasicGameState {
         for (MouseOverArea a : shop.getShop()) {
             a.render(gameContainer, graphics);
         }
-//        towers[0] = new MoneyTree(100, 700);
-//        towers[1] = new MarkerLauncher(200, 700);
+        towers[0] = new MoneyTree(100, 700);
+        towers[1] = new MarkerLauncher(200, 700);
         for (int i = 1; i < 11; i++) {
             graphics.setColor(Color.white);
             graphics.drawRect(i*100, 700, 100, 100);
@@ -119,7 +124,6 @@ public class MainGame extends BasicGameState {
         Input input = gameContainer.getInput();
 
         GameTime++;
-        dCount++;
         genFallingMoney();
         genZombies();
 
@@ -130,7 +134,7 @@ public class MainGame extends BasicGameState {
                 FallingMoney f = fm.get(j);
                 if(input.getMouseX() >= f.getX() && input.getMouseX() <= f.getX()+f.getPic().getWidth() && input.getMouseY() >= f.getY() && input.getMouseY() <= f.getY()+f.getPic().getHeight()){
                     System.out.println("clicked on falling money");
-                    money += 5;
+                    money += 25;
                     fm.remove(j);
                     j--;
                 }
@@ -264,7 +268,16 @@ public class MainGame extends BasicGameState {
 
                     //check if z is dead-dead (dead for the second time)
                     if(z.dead()){
-                        sounds.get(3).play();
+                        int random = (int)(Math.random()*3);
+                        if(random == 0){
+                            sounds.get(3).play();
+                        }
+                        if(random == 1){
+                            sounds.get(6).play();
+                        }
+                        if(random == 2){
+                            sounds.get(7).play();
+                        }
                         zombies.remove(z);
 
                         if(z.getPic().equals(new Image("res/zombies/drew.png")))
@@ -326,6 +339,7 @@ public class MainGame extends BasicGameState {
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         System.out.println("Entered MainGame State");
         enterPause = false;
+        sounds.get(5).loop();
         sounds.get(5).play();
 
 //        genZombies();
@@ -358,7 +372,6 @@ public class MainGame extends BasicGameState {
             System.out.println("Left MainGame");
             GameTime = 0;
             fm.clear();
-            sounds.get(5).stop();
 
 //        for (int i = 0; i < plants.length; i++) {
 //            for (int j = 0; j < plants[i].length; j++) {
