@@ -373,7 +373,7 @@ public class MainGame extends BasicGameState {
             zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
 
 
-            //spawn zombie boss characterized to each level
+            //spawn zombie boss characterized to each levell
         }
         if (GameTime >3000 && zombies.size() == 0)
             game.enterState(4, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.green, 2000));
