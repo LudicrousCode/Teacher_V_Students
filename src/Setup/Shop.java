@@ -27,6 +27,7 @@ public class Shop{
         shop.add(new MouseOverArea(c, new Image("res/blank.png"), 600, 700, 100, 100));
 
     }
+    //
     public MouseOverArea getCell(int cell){
         return shop.get(cell);
     }
