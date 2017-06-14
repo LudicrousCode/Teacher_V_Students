@@ -29,7 +29,6 @@ public class Win extends BasicGameState{
         graphics.setColor(Color.black);
         graphics.drawRect(0, 0, 1200, 800);
         graphics.drawImage(new Image("res/you_win.png"), 480, 200);
-        win.play();
         graphics.drawImage(new Image("res/Menu/main_menu.png"), 539, 400);
         graphics.setColor(Color.blue);
         graphics.setLineWidth(3);
@@ -43,5 +42,11 @@ public class Win extends BasicGameState{
             if(a.getMouseX() >= 539 && a.getMouseX() <= 662 && a.getMouseY() >= 400 && a.getMouseY() <= 440)
                 game.enterState(3);
         }
+    }
+//test
+    public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        System.out.println("Entered Win State");
+        win.play();
+
     }
 }
