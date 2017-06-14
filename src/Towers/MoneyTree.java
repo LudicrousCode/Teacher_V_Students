@@ -13,13 +13,13 @@ public class MoneyTree extends Tower {
         super(20, 0, new Image("res/Tower/moneytree.png"), x, y, 80, false);
 //        int price, int damage, Image pic, int x, int y, int health, boolean b
 
-        setCooldown(300);
+        setCooldown(400);
     }
 
 
     public boolean genMoney(){
         if(getCooldown() == 0){
-            setCooldown(300);
+            setCooldown(400);
             return true;
         }
         else{
