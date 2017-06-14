@@ -33,6 +33,12 @@ public class MainGame extends BasicGameState {
     private int GameTime = 0;
     private boolean enterPause;
 
+    private int markerLauncherPrice;
+    private int moneyTreePrice;
+    private int quizTowerPrice;
+    private int fallingMoneyVal;
+    private int moneyTreeVal;
+
     public int getID() {
         return ID;
     }
@@ -42,6 +48,12 @@ public class MainGame extends BasicGameState {
         background = new Image("res/floor.png");
         money = 50;
         dCount = 0;
+
+        markerLauncherPrice = 50;
+        moneyTreePrice = 20;
+        quizTowerPrice = 30;
+        fallingMoneyVal = 20;
+        moneyTreeVal = 15;
 
         plants = new Tower[6][10];
         zombies = new ArrayList<Zombie>();
@@ -134,7 +146,7 @@ public class MainGame extends BasicGameState {
                 FallingMoney f = fm.get(j);
                 if(input.getMouseX() >= f.getX() && input.getMouseX() <= f.getX()+f.getPic().getWidth() && input.getMouseY() >= f.getY() && input.getMouseY() <= f.getY()+f.getPic().getHeight()){
                     System.out.println("clicked on falling money");
-                    money += 25;
+                    money += fallingMoneyVal;
                     fm.remove(j);
                     j--;
                 }
@@ -153,19 +165,19 @@ public class MainGame extends BasicGameState {
                 //check if mouse is in placing state for each tower, if true, take money, place tower and set placement to false
                 if (mouse.isPlaceMarkerLauncher()) {
                     System.out.println("placed tower");
-                    money -= 20;
+                    money -= markerLauncherPrice;
                     mouse.setPlaceMarkerLauncher(false);
                     plants[input.getMouseY() / 100 - 1][input.getMouseX() / 100 - 1] = new MarkerLauncher(input.getMouseX() / 100 - 1, input.getMouseY() / 100 - 1);
                 }
 
                 else if (mouse.isPlaceMoneyTree()) {
-                    money -= 10;
+                    money -= moneyTreePrice;
                     mouse.setPlaceMoneyTree(false);
                     plants[input.getMouseY() / 100 - 1][input.getMouseX() / 100 - 1] = new MoneyTree(input.getMouseX() / 100 - 1, input.getMouseY() / 100 - 1);
                 }
 
                 else if (mouse.isPlaceQuiz()) {
-                    money -= 30;
+                    money -= quizTowerPrice;
                     mouse.setPlaceQuiz(false);
                     plants[input.getMouseY() / 100 - 1][input.getMouseX() / 100 - 1] = new Quiz(input.getMouseX() / 100 - 1, input.getMouseY() / 100 - 1);
                 }
@@ -173,7 +185,7 @@ public class MainGame extends BasicGameState {
 
             //check if mouse is over any of the shop areas, if so and have enough money set mouse state to placing that tower
             else if (shop.getCell(0).isMouseOver()){
-                if (money - 10 >= 0) {//check if player has enough money
+                if (money - moneyTreePrice >= 0) {//check if player has enough money
                     System.out.println("Tower Bought");
 
                     mouse.setPlaceMoneyTree(true);
@@ -185,7 +197,7 @@ public class MainGame extends BasicGameState {
             }
 
             else if (shop.getCell(1).isMouseOver()){
-                if (money - 20 >= 0) {
+                if (money - markerLauncherPrice >= 0) {
                     System.out.println("Tower Bought");
 
                     mouse.setPlaceMarkerLauncher(true);
@@ -196,7 +208,7 @@ public class MainGame extends BasicGameState {
             }
 
             else if (shop.getCell(2).isMouseOver()){
-                if (money - 30 >= 0) {
+                if (money - quizTowerPrice >= 0) {
                     System.out.println("Tower Bought");
 
                     mouse.setPlaceQuiz(true);
@@ -222,7 +234,7 @@ public class MainGame extends BasicGameState {
                 }
                 if (p != null && p instanceof MoneyTree && ((MoneyTree) p).genMoney()){
                     sounds.get(1).play();
-                    money += 10;
+                    money += moneyTreeVal;
                 }
             }
         }
@@ -345,7 +357,7 @@ public class MainGame extends BasicGameState {
     }
 
     public void genFallingMoney() throws SlickException{
-        if(GameTime % 200 == 0)
+        if(GameTime % 150 == 0)
             fm.add(new FallingMoney((int)(Math.random()*1100), 0, 2));
     }
 

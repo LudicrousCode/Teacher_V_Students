@@ -10,16 +10,16 @@ public class MoneyTree extends Tower {
 
 
     public MoneyTree(int x, int y)throws SlickException{
-        super(10, 0, new Image("res/Tower/moneytree.png"), x, y, 80, false);
+        super(20, 0, new Image("res/Tower/moneytree.png"), x, y, 80, false);
 //        int price, int damage, Image pic, int x, int y, int health, boolean b
 
-        setCooldown(500);
+        setCooldown(300);
     }
 
 
     public boolean genMoney(){
         if(getCooldown() == 0){
-            setCooldown(500);
+            setCooldown(300);
             return true;
         }
         else{
