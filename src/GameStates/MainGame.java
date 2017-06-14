@@ -98,6 +98,9 @@ public class MainGame extends BasicGameState {
         for (int i = 1; i < 11; i++) {
             graphics.setColor(Color.white);
             graphics.drawRect(i*100, 700, 100, 100);
+            graphics.setColor(Color.darkGray);
+            graphics.fillRect(i*100+60, 700, 40, 28);
+            graphics.setColor(Color.white);
             graphics.drawRect(i*100+60, 700, 40, 28);
             if(towers[i-1] != null)
                 graphics.drawString(towers[i-1].getPrice() + "", i*100+65, 705);
@@ -124,6 +127,7 @@ public class MainGame extends BasicGameState {
         Input input = gameContainer.getInput();
 
         GameTime++;
+        dCount++;
         genFallingMoney();
         genZombies();
 
@@ -222,7 +226,7 @@ public class MainGame extends BasicGameState {
                 }
                 if (p != null && p instanceof MoneyTree && ((MoneyTree) p).genMoney()){
                     sounds.get(1).play();
-                    money += 30;
+                    money += 10;
                 }
             }
         }
@@ -268,6 +272,9 @@ public class MainGame extends BasicGameState {
 
                     //check if z is dead-dead (dead for the second time)
                     if(z.dead()){
+                        if(z instanceof Drew)
+                            game.enterState(5);
+
                         int random = (int)(Math.random()*3);
                         if(random == 0){
                             sounds.get(3).play();
@@ -280,8 +287,6 @@ public class MainGame extends BasicGameState {
                         }
                         zombies.remove(z);
 
-                        if(z.getPic().equals(new Image("res/zombies/drew.png")))
-                            game.enterState(5);
                     }
 //                }
             }
@@ -289,7 +294,7 @@ public class MainGame extends BasicGameState {
                 if (plants[z.getY() / 100 - 1][z.getX() / 100 - 1] != null) { //if square is occupied
                     System.out.println("z in occupied square");
 
-                    if(dCount % 50 == 0) {
+                    if(dCount % 35 == 0) {
                         Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
                         p.takeDamage(z.getDamage()); //do damage
                         if (z.bite())
