@@ -9,8 +9,8 @@ import org.newdawn.slick.SlickException;
  */
 public class Freshman extends Zombie {
 
-    public Freshman(int x, int y, Image pic) throws SlickException {
-        super(x, y, pic, 3, 75, 2);
+    public Freshman(int x, int y) throws SlickException {
+        super(x, y, new Image("res/zombies/freshmen.png"), 3, 75, 2);
     }
 
 }

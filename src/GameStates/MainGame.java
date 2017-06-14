@@ -341,7 +341,6 @@ public class MainGame extends BasicGameState {
         enterPause = false;
         sounds.get(5).loop();
 
-//        genZombies();
     }
 
     public void genFallingMoney() throws SlickException{
@@ -350,20 +349,29 @@ public class MainGame extends BasicGameState {
     }
 
     public void genZombies() throws SlickException{
-        if(GameTime > 500 && GameTime % 200 == 0) {
-            int rand = (int)(Math.random()*100);
-            if(rand < 50) {
-                zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
+        if(GameTime < 2750) {
+            if (GameTime > 500 && GameTime % 200 == 0) {
+                zombies.add(new Freshman(1200, (int) ((Math.random() * 6) + 1) * 100));
             }
-            else{
+            if (GameTime > 1000 && GameTime % 400 == 0) {
                 zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
+
             }
+            if(GameTime > 2000 && GameTime % 400 == 0)
+                zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
         }
-        if(GameTime == 2500){
+        if(GameTime == 2750){
+            zombies.add(new Senior(1200, (int)(Math.random()*6+1)));
+            zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
+            zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
+            zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
+            zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
+
+
             //spawn zombie boss characterized to each level
         }
-//        if (GameTime >2500 && zombies.size() == 0)
-//            game.enterState(4);
+        if (GameTime >3000 && zombies.size() == 0)
+            game.enterState(4, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.green, 2000));
     }
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
