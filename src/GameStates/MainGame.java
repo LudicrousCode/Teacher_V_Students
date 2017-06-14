@@ -386,7 +386,7 @@ public class MainGame extends BasicGameState {
                 zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
         }
         if(GameTime == 2750){
-            zombies.add(new Senior(1200, (int)(Math.random()*6+1)));
+            zombies.add(new Senior(1200, (int) ((Math.random() * 6) + 1) * 100));
             zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
             zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
             zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
