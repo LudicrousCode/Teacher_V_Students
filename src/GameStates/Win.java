@@ -39,8 +39,10 @@ public class Win extends BasicGameState{
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         Input a = gameContainer.getInput();
         if (a.isMousePressed(0)){
-            if(a.getMouseX() >= 539 && a.getMouseX() <= 662 && a.getMouseY() >= 400 && a.getMouseY() <= 440)
+            if(a.getMouseX() >= 539 && a.getMouseX() <= 662 && a.getMouseY() >= 400 && a.getMouseY() <= 440){
+                win.stop();
                 game.enterState(3);
+            }
         }
     }
 //test
