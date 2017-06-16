@@ -31,6 +31,8 @@ public class Win extends BasicGameState{
         graphics.drawImage(new Image("res/you_win.png"), 480, 200);
         graphics.drawImage(new Image("res/Menu/main_menu.png"), 539, 400);
         graphics.setColor(Color.blue);
+        graphics.drawString("Authors:", 560, 475);
+        graphics.drawString("Clarissa, Sarah, Andrew, Rachel, Crystal, Cassandra", 375, 500);
         graphics.setLineWidth(3);
         graphics.drawRect(539, 400, 123, 40);
     }
