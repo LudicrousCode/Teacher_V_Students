@@ -398,7 +398,7 @@ public class MainGame extends BasicGameState {
             //spawn zombie boss characterized to each levell
         }
         if (GameTime >3000 && zombies.size() == 0)
-            game.enterState(4, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.green, 2000));
+            game.enterState(5, new FadeOutTransition(Color.black,400), new FadeInTransition(Color.green, 2000));
     }
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
