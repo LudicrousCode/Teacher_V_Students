@@ -134,6 +134,7 @@ public class MainGame extends BasicGameState {
         graphics.setLineWidth(5);
         graphics.drawRect(1120, 10, 60, 30);
         graphics.drawString("MENU", 1132, 15);
+        graphics.drawImage(new Image("res/goodHopps.png"), 0, 350);
     }
 
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
@@ -158,7 +159,7 @@ public class MainGame extends BasicGameState {
             for (int j = 0; j < fm.size(); j++) {
                 FallingMoney f = fm.get(j);
                 if(input.getMouseX() >= f.getX() && input.getMouseX() <= f.getX()+f.getPic().getWidth() && input.getMouseY() >= f.getY() && input.getMouseY() <= f.getY()+f.getPic().getHeight()){
-                    System.out.println("clicked on falling money");
+//                    System.out.println("clicked on falling money");
                     money += fallingMoneyVal;
                     fm.remove(j);
                     j--;
@@ -173,11 +174,11 @@ public class MainGame extends BasicGameState {
 
             //check if mouse is clicked on playing field
             if (input.getMouseX()>100 && input.getMouseX()<1200 && input.getMouseY()>100 && input.getMouseY()<700){
-                System.out.println("mouse on playing field");
+//                System.out.println("mouse on playing field");
 
                 //check if mouse is in placing state for each tower, if true, take money, place tower and set placement to false
                 if (mouse.isPlaceMarkerLauncher()) {
-                    System.out.println("placed tower");
+//                    System.out.println("placed tower");
                     money -= markerLauncherPrice;
                     mouse.setPlaceMarkerLauncher(false);
                     plants[input.getMouseY() / 100 - 1][input.getMouseX() / 100 - 1] = new MarkerLauncher(input.getMouseX() / 100 - 1, input.getMouseY() / 100 - 1);
@@ -199,7 +200,7 @@ public class MainGame extends BasicGameState {
             //check if mouse is over any of the shop areas, if so and have enough money set mouse state to placing that tower
             else if (shop.getCell(0).isMouseOver()){
                 if (money - moneyTreePrice >= 0) {//check if player has enough money
-                    System.out.println("Tower Bought");
+//                    System.out.println("Tower Bought");
 
                     mouse.setPlaceMoneyTree(true);
                     mouse.setPlaceMarkerLauncher(false);
@@ -211,7 +212,7 @@ public class MainGame extends BasicGameState {
 
             else if (shop.getCell(1).isMouseOver()){
                 if (money - markerLauncherPrice >= 0) {
-                    System.out.println("Tower Bought");
+//                    System.out.println("Tower Bought");
 
                     mouse.setPlaceMarkerLauncher(true);
                     mouse.setPlaceMoneyTree(false);
@@ -222,7 +223,7 @@ public class MainGame extends BasicGameState {
 
             else if (shop.getCell(2).isMouseOver()){
                 if (money - quizTowerPrice >= 0) {
-                    System.out.println("Tower Bought");
+//                    System.out.println("Tower Bought");
 
                     mouse.setPlaceQuiz(true);
                     mouse.setPlaceMoneyTree(false);
@@ -274,14 +275,14 @@ public class MainGame extends BasicGameState {
             for(int m = 0; m < projectiles.size(); m++){
                 if(projectiles.get(m).getX() > z.getX()-80 && projectiles.get(m).getX() < z.getX()+180
                     && projectiles.get(m).getY() == z.getY() && !(projectiles.get(m).getX() > 1100)){
-                    System.out.println("z hit by projectile");
+//                    System.out.println("z hit by projectile");
                     z.takeDamage(projectiles.get(m).getDamage()); //take damage if hit
                     projectiles.remove(m); //remove projectile from projectile list
                     m--;
                 }
 
                 else if(projectiles.size() > 0 && projectiles.get(m).getX() > 1100) {
-                    System.out.println("projectile removed");
+//                    System.out.println("projectile removed");
                     projectiles.remove(m);
                     m--;
                 }
@@ -313,7 +314,7 @@ public class MainGame extends BasicGameState {
             }
             if(z.getX()/100-1 >-1 && z.getX()<1100) {
                 if (plants[z.getY() / 100 - 1][z.getX() / 100 - 1] != null) { //if square is occupied
-                    System.out.println("z in occupied square");
+//                    System.out.println("z in occupied square");
 
                     if(dCount % 35 == 0) {
                         Tower p = plants[z.getY() / 100 - 1][z.getX() / 100 - 1];
@@ -387,11 +388,11 @@ public class MainGame extends BasicGameState {
                 zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
         }
         if(GameTime == 2750){
+            zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
+            zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
+            zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
+            zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
             zombies.add(new Senior(1200, (int) ((Math.random() * 6) + 1) * 100));
-            zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
-            zombies.add(new Drew(1200, (int) ((Math.random() * 6) + 1) * 100));
-            zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
-            zombies.add(new Caffeinated(1200, (int) ((Math.random() * 6) + 1) * 100));
 
 
             //spawn zombie boss characterized to each levell
@@ -424,7 +425,7 @@ public class MainGame extends BasicGameState {
 
 
     public void mouseClicked(int button, int x, int y, int i){
-        System.out.println("Mouse clicked");
+//        System.out.println("Mouse clicked");
 
 //        //check if mouse is clicked on playing field
 //        if (input.getMouseX()>100 && input.getMouseX()<1200 && input.getMouseY()>100 && input.getMouseY()<700){
