@@ -42,7 +42,7 @@ public class Zombie extends Sprite {
      * @param d Amount of damage to be taken
      */
     public void takeDamage(int d){
-        System.out.println("Z damaged");
+//        System.out.println("Z damaged");
         HP-= d;
     }
 

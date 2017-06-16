@@ -294,8 +294,8 @@ public class MainGame extends BasicGameState {
 
                     //check if z is dead-dead (dead for the second time)
                     if(z.dead()){
-                        if(z instanceof Senior)
-                            game.enterState(5);
+//                        if(z instanceof Senior)
+//                            game.enterState(5);
 
                         int random = (int)(Math.random()*3);
                         if(random == 0){
